@@ -1,7 +1,7 @@
 # FreshmanCommunity
 
 
-# 팀원소개
+## 팀원소개
 <table>
   <tbody>
     <tr>
@@ -13,7 +13,7 @@
   </tbody>
 </table>
 
-# 기술스택
+## 기술스택
 
 ### ✔️Frond-end
 
