@@ -15,6 +15,6 @@
 
 ## 기술스택
 
-### ✔️Frond-end
+### ✔️Front-end
 
 ### ✔️Back-end
