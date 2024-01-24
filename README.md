@@ -18,3 +18,4 @@
 ### ✔️Front-end
 
 ### ✔️Back-end
+[![stackticon](https://firebasestorage.googleapis.com/v0/b/stackticon-81399.appspot.com/o/images%2F1706119378945?alt=media&token=856f854d-6b88-45a1-ad1b-47fc62f35c64)](https://github.com/msdio/stackticon)
