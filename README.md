@@ -1,1 +1,21 @@
 # FreshmanCommunity
+
+
+## 팀원소개
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href=""><img src=""width=100px;" alt=""/><br /><sub><b>UIUX & FE : 한승연 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE : 김채원</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE : 복지희</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE : 이채원</b></sub></a><br /></td>
+     <tr/>
+  </tbody>
+</table>
+
+## 기술스택
+
+### ✔️Front-end
+
+### ✔️Back-end
+[![stackticon](https://firebasestorage.googleapis.com/v0/b/stackticon-81399.appspot.com/o/images%2F1706119378945?alt=media&token=856f854d-6b88-45a1-ad1b-47fc62f35c64)](https://github.com/msdio/stackticon)
