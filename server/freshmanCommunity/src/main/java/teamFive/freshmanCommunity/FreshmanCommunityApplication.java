@@ -8,6 +8,7 @@ public class FreshmanCommunityApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FreshmanCommunityApplication.class, args);
+		console.log("hello");
 	}
 
 }
