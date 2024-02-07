@@ -2,10 +2,13 @@ spring:
   # H2 Database ??
   datasource:
     driver-class-name: org.h2.Driver
-    url: 'jdbc:h2:mem:test'   # H2 DB ?? ?? (In-Memory Mode)
+    url: jdbc:h2:tcp://localhost/~/freshman   # H2 DB ?? ?? (In-Memory Mode)
+    username: sa
     #url: 'jdbc:h2:~/test'    # H2 DB ?? ?? (Embedded Mode)
   #    username: username        # H2 DB ?? ID (??? ??)
   #    password: password        # H2 DB ?? PW (??? ??)
+  profiles:
+    active: dev
 
   # H2 Console ??
   h2:

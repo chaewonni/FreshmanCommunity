@@ -12,7 +12,6 @@ import org.springframework.util.StringUtils;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignupDto {
-    private Long id;
     private String memberName;
     private String studentId;
     private String email;
@@ -21,7 +20,6 @@ public class SignupDto {
 
     public static SignupDto createMemberDto(Member member){
         return new SignupDto(
-                member.getId(),
                 member.getMemberName(),
                 member.getStudentId(),
                 member.getEmail(),

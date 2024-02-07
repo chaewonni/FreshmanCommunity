@@ -39,6 +39,9 @@ public class MemberApiController {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } else {
             // 로그인 실패
+//            HttpSession session = request.getSession();
+//            session.removeAttribute("member");
+//            session.invalidate();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
         }
     }
@@ -48,7 +51,7 @@ public class MemberApiController {
     public ResponseEntity<String> logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         memberService.logout(session);
-        return ResponseEntity.status(HttpStatus.OK).body("Logged out successfully");
+        return ResponseEntity.status(HttpStatus.OK).body("로그아웃 성공");
     }
 
     //회원탈퇴
@@ -59,7 +62,7 @@ public class MemberApiController {
         if (member != null){
             memberService.delete(member.getId());
             session.invalidate();
-            return ResponseEntity.status(HttpStatus.OK).body("탈퇴완료");
+            return ResponseEntity.status(HttpStatus.OK).body("탈퇴 완료");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }

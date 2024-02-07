@@ -24,16 +24,20 @@ public class MemberService {
 
     @Transactional
     //회원가입
-    public SignupDto signup (SignupDto signupDto) {
+    public void signup (SignupDto signupDto) {
         validateDuplicateMember(signupDto);
         signupDto.encodingPassword(passwordEncoder);
         Major major = majorRepository.findByMajorName(signupDto.getMajorName());
+        if (major == null) {
+            throw new IllegalStateException("전공이 존재하지 않습니다.");
+        }
         //멤버 엔티티 생성
         Member member = Member.createMember(signupDto, major);
         //멤버 엔티티를 DB에 저장
-        Member signed = memberRepository.save(member);
-        //DTO로 변환
-        return SignupDto.createMemberDto(signed);
+        memberRepository.save(member);
+//        Member signed = memberRepository.save(member);
+//        //DTO로 변환 --> 필요없어서 주석처리
+//        SignupDto.createMemberDto(signed);
     }
 
     //중복 검사
@@ -48,7 +52,7 @@ public class MemberService {
     private void validateDuplicateMember(SignupDto signupDto) {
         Long count = memberRepository.countByEmail(signupDto.getEmail());
         if (count > 0) {
-            // 중복된 이메일이 존재하는 경우 예외 발생
+            // 중복된 이메일이나 학번이 존재하는 경우 예외 발생
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
@@ -56,11 +60,11 @@ public class MemberService {
     //로그인
     public Member login (LoginDto loginDto) {
         Member member = memberRepository.findByEmail(loginDto.getEmail());
-        if (member != null && passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
-            member.clearPassword();
-            return member;
-        }
-        return null;
+        if (member == null || !passwordEncoder.matches(loginDto.getPassword(), member.getPassword()))
+            return null;
+
+        member.clearPassword();
+        return member;
     }
 
     //로그아웃
@@ -72,11 +76,11 @@ public class MemberService {
     }
 
     //회원 탈퇴
-    public SignupDto delete(Long memberId) {
+    public void delete(Long memberId) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("Member not found"));
+                .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
         memberRepository.delete(member);
-        return SignupDto.createMemberDto(member);
+//        SignupDto.createMemberDto(member);
     }
 
     //회원 전체 조회

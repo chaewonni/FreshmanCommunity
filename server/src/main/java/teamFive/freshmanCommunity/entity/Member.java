@@ -40,18 +40,27 @@ public class Member {
     //엔티티 생성
     public static Member createMember(SignupDto signupDto, Major major) {
         //예외 발생
-        if(signupDto.getId() != null)
-            throw new IllegalArgumentException("member의 id가 없어야 합니다.");
+//        if(signupDto.getId() != null)
+//            throw new IllegalArgumentException("member의 id가 없어야 합니다.");
         if(!signupDto.getMajorName().equals(major.getMajorName()))
             throw new IllegalArgumentException("name이 잘못됐습니다.");
 
+//        프론트에서 전체 학번을 받고, 백엔드에서 2자리로 만들어서 저장하는 형태
+//        String studentId = signupDto.getStudentId();
+//        String processStudentId = studentId.substring(0,2);
+
+
+//        처음부터 2자리 숫자만 프론트엔드에서 받도록 하고, 백엔드에선 substring 대신 string 길이로 2자리수 판단 후 저장하는 형태
         String studentId = signupDto.getStudentId();
-        String processStudentId = studentId.substring(0,2);
+
+        if(studentId.length() != 2) {
+            throw new IllegalArgumentException("학번의 길이가 2자리가 아닙니다.");
+        }
 
         return new Member(
-                signupDto.getId(),
+                null,
                 signupDto.getMemberName(),
-                processStudentId,
+                studentId,
                 signupDto.getEmail(),
                 signupDto.getPassword(),
                 major
