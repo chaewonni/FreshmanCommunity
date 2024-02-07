@@ -1,8 +1,17 @@
 package teamFive.freshmanCommunity.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.sql.Timestamp;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Getter
 @Entity
 public class Article {
     @Id
