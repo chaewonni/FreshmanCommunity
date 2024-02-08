@@ -26,6 +26,10 @@ public class ArticleApiController {
     public ResponseEntity<List<ArticleDto>> showAll(@PathVariable Long majorId) {
         // 서비스에 위임
         List<ArticleDto> dtos = articleService.articles(majorId);
+        // 예외 처리
+        if (dtos == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
