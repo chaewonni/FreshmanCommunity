@@ -1,12 +1,10 @@
 package teamFive.freshmanCommunity.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,8 +19,8 @@ public class Article {
     private String title;
     @Column
     private String content;
-    @Column (name = "TIMESTAMP_FIELD")
-    private java.sql.Timestamp createDate;
+    @Column
+    private LocalDateTime createDate;
     @ManyToOne
     @JoinColumn(name="memberId")
     private Member member;
