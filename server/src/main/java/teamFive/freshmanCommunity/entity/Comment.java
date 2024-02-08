@@ -43,7 +43,8 @@ public class Comment {
     @JoinColumn(name="article_id")
     private Article article;
 
-    public static Comment createComment(CommentDto dto){
-        return new Comment(dto.getId(), dto.getContent(), dto.getCreateDate(), dto.getLikesCount(), dto.getMember(), dto.getArticle());
+    public static Comment createComment(CommentDto dto, Article article){
+        //API에 articleId 정보 안들어있음. article 별도로 넣어주어야함
+        return new Comment(dto.getId(), dto.getContent(), dto.getCreateDate(), dto.getLikesCount(), dto.getMember(), article);
     }
 }
