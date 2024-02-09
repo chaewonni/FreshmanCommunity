@@ -20,6 +20,9 @@ public class CommentService {
     private ArticleRepository articleRepository;
 
     public List<CommentDto> comments(Long articleId) {
+        //articleId가 없을 경우 에러
+        if(articleRepository.findById(articleId).isEmpty())
+            throw new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
         //dto로 변환해서 반환
         return commentRepository.findByArticleId(articleId)
                 .stream()
@@ -32,10 +35,8 @@ public class CommentService {
         //api로 content만 들어오고, uri로 articleId
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(()-> new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
-
-        Comment created = Comment.createComment(dto, article);
+        Comment created = Comment.createNewComment(dto, article);  //likesCount는 처음생성하면 0개니까 자동생성되도록
         Comment save = commentRepository.save(created);
-        //likeCount 처리해야함!
         return CommentDto.createCommentDto(save);
     }
 
@@ -49,6 +50,7 @@ public class CommentService {
         return CommentDto.createCommentDto(save);
     }
 
+    @Transactional
     public CommentDto delete(Long commentId) {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()-> new IllegalArgumentException("해당 id의 댓글이 존재하지 않습니다."));

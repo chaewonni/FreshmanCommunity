@@ -20,7 +20,7 @@ public class CommentDto {
     private Long id;
     private String content;
     private LocalDateTime createDate;
-    private Integer likesCount;
+    private int likesCount;
     private Member member;  //member FK
     private Article article;    //article FK
 
