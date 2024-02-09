@@ -9,7 +9,7 @@ import teamFive.freshmanCommunity.exception.NonExistentBoardIdException;
 
 @RestControllerAdvice
 @Slf4j
-public class ArticleApiControllerAdvice {
+public class GlobalExceptionHandler {
     @ExceptionHandler(NonExistentBoardIdException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String nonExistentBoardIdExceptionHandler(NonExistentBoardIdException e) {
