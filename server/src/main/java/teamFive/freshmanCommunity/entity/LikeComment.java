@@ -16,9 +16,6 @@ public class LikeComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private boolean status;
-
     @ManyToOne
     @JoinColumn(name="member_id")
     private Member member;

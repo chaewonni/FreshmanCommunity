@@ -9,7 +9,6 @@ import org.hibernate.annotations.ColumnDefault;
 import teamFive.freshmanCommunity.dto.CommentDto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,13 +26,9 @@ public class Comment {
     @Column
     private LocalDateTime createDate;
 
-//    @OneToMany
-//    @JoinColumn(name="likeComment")
-//    private List<LikeComment> likesCount;
-
     @Column
-    private Integer likesCount;
-    //리스트형태로 저장? 아니면 그냥 숫자만 저장할지..
+    @ColumnDefault("0") //기본값 0
+    private int likesCount;
 
     @ManyToOne
     @JoinColumn(name="member_id")
@@ -43,18 +38,15 @@ public class Comment {
     @JoinColumn(name="article_id")
     private Article article;
 
-    public static Comment createComment(CommentDto dto, Article article){
-        //API에 articleId 정보 안들어있는 경우
-        return new Comment(dto.getId(), dto.getContent(), dto.getCreateDate(), dto.getLikesCount(), dto.getMember(), article);
+    public static Comment createNewComment(CommentDto dto, Article article){
+        //API로 content만 전달됨
+        //작성한 member 어떻게 저장할건지? 세션에서 넘어오도록?
+        //처음 comment 만들면 좋아요개수 자동 0개
+        return new Comment(dto.getId(), dto.getContent(), LocalDateTime.now(), 0, dto.getMember(), article);
     }
 
     public void patch(CommentDto dto) {
         if(this.content != dto.getContent())
             this.content = dto.getContent();
     }
-
-//    public static Comment createCommentApiOnlyContent(CommentDto dto, Article article, Long commentId, LocalDateTime date){
-//        //API에 content 내용만 오는 경우 entity로 변환
-//        return new Comment(commentId, dto.getContent(), date, dto.getLikesCount(), )
-//    }
 }
