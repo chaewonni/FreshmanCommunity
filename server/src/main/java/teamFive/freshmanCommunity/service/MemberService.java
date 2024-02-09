@@ -4,6 +4,9 @@ import teamFive.freshmanCommunity.dto.LoginDto;
 import teamFive.freshmanCommunity.dto.SignupDto;
 import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
+import teamFive.freshmanCommunity.exception.DuplicateMemberException;
+import teamFive.freshmanCommunity.exception.IncorrectPasswordException;
+import teamFive.freshmanCommunity.exception.MemberNotFoundException;
 import teamFive.freshmanCommunity.repository.MajorRepository;
 import teamFive.freshmanCommunity.repository.MemberRepository;
 import jakarta.servlet.http.HttpSession;
@@ -53,15 +56,17 @@ public class MemberService {
         Long count = memberRepository.countByEmail(signupDto.getEmail());
         if (count > 0) {
             // 중복된 이메일이나 학번이 존재하는 경우 예외 발생
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
+            throw new DuplicateMemberException("이미 존재하는 회원입니다.");
         }
     }
 
     //로그인
     public Member login (LoginDto loginDto) {
         Member member = memberRepository.findByEmail(loginDto.getEmail());
-        if (member == null || !passwordEncoder.matches(loginDto.getPassword(), member.getPassword()))
-            return null;
+        if (member == null)
+            throw new MemberNotFoundException("존재하지 않는 회원입니다.");
+        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword()))
+            throw new IncorrectPasswordException("비밀번호가 맞지 않습니다.");
 
         member.clearPassword();
         return member;

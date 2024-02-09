@@ -37,7 +37,7 @@ public class MemberApiController {
             session.setAttribute("member", member);
             LoginResponseDto response = new LoginResponseDto(member.getId(), member.getMemberName(), member.getMajor());
             return ResponseEntity.status(HttpStatus.OK).body(response);
-        } else {
+        } else{
             // 로그인 실패
 //            HttpSession session = request.getSession();
 //            session.removeAttribute("member");
