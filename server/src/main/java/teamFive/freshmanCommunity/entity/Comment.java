@@ -44,7 +44,17 @@ public class Comment {
     private Article article;
 
     public static Comment createComment(CommentDto dto, Article article){
-        //API에 articleId 정보 안들어있음. article 별도로 넣어주어야함
+        //API에 articleId 정보 안들어있는 경우
         return new Comment(dto.getId(), dto.getContent(), dto.getCreateDate(), dto.getLikesCount(), dto.getMember(), article);
     }
+
+    public void patch(CommentDto dto) {
+        if(this.content != dto.getContent())
+            this.content = dto.getContent();
+    }
+
+//    public static Comment createCommentApiOnlyContent(CommentDto dto, Article article, Long commentId, LocalDateTime date){
+//        //API에 content 내용만 오는 경우 entity로 변환
+//        return new Comment(commentId, dto.getContent(), date, dto.getLikesCount(), )
+//    }
 }

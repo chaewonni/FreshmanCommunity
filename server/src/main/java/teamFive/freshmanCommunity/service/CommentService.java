@@ -20,6 +20,7 @@ public class CommentService {
     private ArticleRepository articleRepository;
 
     public List<CommentDto> comments(Long articleId) {
+        //dto로 변환해서 반환
         return commentRepository.findByArticleId(articleId)
                 .stream()
                 .map(comment -> CommentDto.createCommentDto(comment))
@@ -28,6 +29,7 @@ public class CommentService {
 
     @Transactional
     public CommentDto create(Long articleId, CommentDto dto) {
+        //api로 content만 들어오고, uri로 articleId
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(()-> new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
 
@@ -35,5 +37,22 @@ public class CommentService {
         Comment save = commentRepository.save(created);
         //likeCount 처리해야함!
         return CommentDto.createCommentDto(save);
+    }
+
+    @Transactional
+    public CommentDto update(Long commentId, CommentDto dto) {
+        //api로 content만 들어옴
+        Comment target = commentRepository.findById(commentId)
+                .orElseThrow(()->new IllegalArgumentException("해당 id의 댓글이 존재하지 않습니다."));
+        target.patch(dto);
+        Comment save = commentRepository.save(target);
+        return CommentDto.createCommentDto(save);
+    }
+
+    public CommentDto delete(Long commentId) {
+        Comment target = commentRepository.findById(commentId)
+                .orElseThrow(()-> new IllegalArgumentException("해당 id의 댓글이 존재하지 않습니다."));
+        commentRepository.delete(target);
+        return CommentDto.createCommentDto(target);
     }
 }
