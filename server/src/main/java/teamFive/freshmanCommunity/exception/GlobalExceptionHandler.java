@@ -1,6 +1,7 @@
 package teamFive.freshmanCommunity.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -27,9 +28,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(e.getMessage());
-      
+    }
+
     @ExceptionHandler(BoardNotFoundException.class)
-    public ResponsEntity<String> BoardNotFoundExceptionHandler(BoardNotFoundException e) {
+    public ResponseEntity<String> BoardNotFoundExceptionHandler(BoardNotFoundException e) {
         log.error("{}", e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
