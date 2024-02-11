@@ -37,4 +37,12 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(IllegalArticleIdException.class)
+    public ResponseEntity<String> BoardNotFoundExceptionHandler(IllegalArticleIdException e) {
+        log.error("{}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(e.getMessage());
+    }
 }
