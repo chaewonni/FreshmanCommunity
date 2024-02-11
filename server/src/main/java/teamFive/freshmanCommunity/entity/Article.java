@@ -2,8 +2,9 @@ package teamFive.freshmanCommunity.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import teamFive.freshmanCommunity.dto.CreateArticleDto;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -19,6 +20,7 @@ public class Article {
     private String title;
     @Column
     private String content;
+    @CreationTimestamp
     @Column
     private LocalDateTime createDate;
     @ManyToOne
@@ -28,4 +30,16 @@ public class Article {
     @ManyToOne
     @JoinColumn(name="majorId")
     private Major major;
+
+    public static Article create(CreateArticleDto dto, Major major, Member member) {
+
+        return new Article(
+                null,
+                dto.getTitle(),
+                dto.getContent(),
+                null,
+                member,
+                major
+        );
+    }
 }

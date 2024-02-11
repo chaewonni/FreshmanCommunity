@@ -1,13 +1,13 @@
 package teamFive.freshmanCommunity.api;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import teamFive.freshmanCommunity.dto.ArticleDto;
+import teamFive.freshmanCommunity.dto.CreateArticleDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
 import teamFive.freshmanCommunity.service.ArticleService;
@@ -32,5 +32,14 @@ public class ArticleApiController {
         }
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
+    }
+
+    //2. 게시글 생성
+    @PostMapping("/articles/{majorId}")
+    public ResponseEntity<ArticleDto> create(@PathVariable Long majorId,
+                                             @RequestBody CreateArticleDto dto,
+                                             HttpServletRequest request) {
+        ArticleDto createdDto = articleService.create(majorId, dto, request);
+        return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 }

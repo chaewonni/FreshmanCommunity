@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import teamFive.freshmanCommunity.entity.Article;
+import teamFive.freshmanCommunity.entity.Major;
+import teamFive.freshmanCommunity.entity.Member;
 
 import java.time.LocalDateTime;
 
@@ -15,17 +17,18 @@ public class ArticleDto {
     private String title;
     private String content;
     private LocalDateTime createDate;
-    private Long memberId;
-    private Long majorId;
+    private Member member;
+    private Major major;
 
-    public static ArticleDto createArticleDto(Article n) {
+
+    public static ArticleDto createArticleDto(Article created) {
         return new ArticleDto(
-                n.getId(),
-                n.getTitle(),
-                n.getContent(),
-                n.getCreateDate(),
-                n.getMember().getId(),
-                n.getMajor().getId()
+                created.getId(),
+                created.getTitle(),
+                created.getContent(),
+                created.getCreateDate(),
+                created.getMember(),
+                created.getMajor()
         );
     }
 }
