@@ -38,11 +38,16 @@ public class Comment {
     @JoinColumn(name="article_id")
     private Article article;
 
-    public static Comment createNewComment(CommentDto dto, Article article){
+    public static Comment createNewComment(CommentDto dto, Article article, Member member){
         //API로 content만 전달됨
-        //작성한 member 어떻게 저장할건지? 세션에서 넘어오도록?
         //처음 comment 만들면 좋아요개수 자동 0개
-        return new Comment(dto.getId(), dto.getContent(), LocalDateTime.now(), 0, dto.getMember(), article);
+        return new Comment(
+                dto.getId(),
+                dto.getContent(),
+                LocalDateTime.now(),
+                0,
+                member,
+                article);
     }
 
     public void patch(CommentDto dto) {

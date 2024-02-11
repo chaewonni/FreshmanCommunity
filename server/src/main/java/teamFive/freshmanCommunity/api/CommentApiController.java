@@ -1,10 +1,12 @@
 package teamFive.freshmanCommunity.api;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teamFive.freshmanCommunity.dto.CommentDto;
+import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.service.CommentService;
 
 import java.util.List;
@@ -23,8 +25,11 @@ public class CommentApiController {
     }
 
     @PostMapping("/article/{articleId}/comment")
-    public ResponseEntity<CommentDto> create(@PathVariable Long articleId, @RequestBody CommentDto dto){
-        CommentDto createDto = commentService.create(articleId, dto);
+    public ResponseEntity<CommentDto> create(@PathVariable Long articleId, @RequestBody CommentDto dto, HttpSession session){
+        //세션에서 member 불러오기
+        Member member = (Member) session.getAttribute("member");
+
+        CommentDto createDto = commentService.create(articleId, dto, member);
         return ResponseEntity.status(HttpStatus.OK).body(createDto);
     }
 

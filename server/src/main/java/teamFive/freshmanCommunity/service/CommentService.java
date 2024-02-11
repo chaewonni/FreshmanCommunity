@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import teamFive.freshmanCommunity.dto.CommentDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Comment;
+import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.BoardNotFoundException;
 import teamFive.freshmanCommunity.exception.CommentNotFoundException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
@@ -33,20 +34,21 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentDto create(Long articleId, CommentDto dto) {
-        //api로 content만 들어오고, uri로 articleId
+    public CommentDto create(Long articleId, CommentDto dto, Member member) {
+        //api로 content만
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(()-> new BoardNotFoundException());
-        Comment created = Comment.createNewComment(dto, article);  //likesCount는 처음생성하면 0개니까 자동생성되도록
+
+        Comment created = Comment.createNewComment(dto, article, member);  //likesCount는 처음생성하면 0개니까 자동생성되도록
         Comment save = commentRepository.save(created);
         return CommentDto.createCommentDto(save);
     }
 
     @Transactional
     public CommentDto update(Long commentId, CommentDto dto) {
-        //api로 content만 들어옴
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()->new CommentNotFoundException());
+        //수정사항 content 밖에 없음
         target.patch(dto);
         Comment save = commentRepository.save(target);
         return CommentDto.createCommentDto(save);
