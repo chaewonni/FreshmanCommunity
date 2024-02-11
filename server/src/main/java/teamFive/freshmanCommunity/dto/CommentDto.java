@@ -21,10 +21,16 @@ public class CommentDto {
     private String content;
     private LocalDateTime createDate;
     private int likesCount;
-    private Member member;  //member FK
-    private Article article;    //article FK
+    private Long memberId;  //member FK
+    private Long articleId;    //article FK
 
     public static CommentDto createCommentDto(Comment comment){
-        return new CommentDto(comment.getId(), comment.getContent(), comment.getCreateDate(), comment.getLikesCount(), comment.getMember(), comment.getArticle());
+        return new CommentDto(
+                comment.getId(),
+                comment.getContent(),
+                comment.getCreateDate(),
+                comment.getLikesCount(),
+                comment.getMember().getId(),
+                comment.getArticle().getId());
     }
 }
