@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import teamFive.freshmanCommunity.dto.CommentDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Comment;
+import teamFive.freshmanCommunity.exception.BoardNotFoundException;
+import teamFive.freshmanCommunity.exception.CommentNotFoundException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
 import teamFive.freshmanCommunity.repository.CommentRepository;
 
@@ -22,7 +24,7 @@ public class CommentService {
     public List<CommentDto> comments(Long articleId) {
         //articleId가 없을 경우 에러
         if(articleRepository.findById(articleId).isEmpty())
-            throw new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
+            throw new BoardNotFoundException();
         //dto로 변환해서 반환
         return commentRepository.findByArticleId(articleId)
                 .stream()
@@ -34,7 +36,7 @@ public class CommentService {
     public CommentDto create(Long articleId, CommentDto dto) {
         //api로 content만 들어오고, uri로 articleId
         Article article = articleRepository.findById(articleId)
-                .orElseThrow(()-> new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
+                .orElseThrow(()-> new BoardNotFoundException());
         Comment created = Comment.createNewComment(dto, article);  //likesCount는 처음생성하면 0개니까 자동생성되도록
         Comment save = commentRepository.save(created);
         return CommentDto.createCommentDto(save);
@@ -44,7 +46,7 @@ public class CommentService {
     public CommentDto update(Long commentId, CommentDto dto) {
         //api로 content만 들어옴
         Comment target = commentRepository.findById(commentId)
-                .orElseThrow(()->new IllegalArgumentException("해당 id의 댓글이 존재하지 않습니다."));
+                .orElseThrow(()->new CommentNotFoundException());
         target.patch(dto);
         Comment save = commentRepository.save(target);
         return CommentDto.createCommentDto(save);
@@ -53,7 +55,7 @@ public class CommentService {
     @Transactional
     public CommentDto delete(Long commentId) {
         Comment target = commentRepository.findById(commentId)
-                .orElseThrow(()-> new IllegalArgumentException("해당 id의 댓글이 존재하지 않습니다."));
+                .orElseThrow(()-> new CommentNotFoundException());
         commentRepository.delete(target);
         return CommentDto.createCommentDto(target);
     }
