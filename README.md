@@ -1,6 +1,9 @@
 # FreshmanCommunity
 ![image](https://github.com/chaewonni/FreshmanCommunity/assets/113420297/c468ec53-1740-4fc4-b544-cd0d6f2f75d6)
 
+## :fire:프로젝트 소개 
+새내기를 위한 커뮤니티 "무엇이든 물어벗살"은 학생들이 학과별, 단대별 등 다양한 주제로 질문을 올릴 수 있는 포스트잇 형식의 커뮤니티입니다. 사용자들은 이를 통해 쉽게 정보를 공유하고 소통할 수 있습니다.
+
 ## 팀원소개
 <table>
   <tbody>
