@@ -35,7 +35,7 @@ public class MemberApiController {
             // 로그인 성공
             HttpSession session = request.getSession();
             session.setAttribute("member", member);
-            LoginResponseDto response = new LoginResponseDto(member.getId(), member.getMemberName(), member.getMajor());
+            LoginResponseDto response = new LoginResponseDto(member.getId(), member.getMemberName(),member.getStudentId(), member.getMajor());
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } else{
             // 로그인 실패
