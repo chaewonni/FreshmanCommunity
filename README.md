@@ -5,13 +5,13 @@
 새내기를 위한 커뮤니티 "무엇이든 물어벗살"은 학생들이 학과별, 단대별 등 다양한 주제로 질문을 올릴 수 있는 포스트잇 형식의 커뮤니티입니다. 사용자들은 이를 통해 쉽게 정보를 공유하고 소통할 수 있습니다.
 
 
-## :fire:팀원소개
+## :fire:팀원 소개
 | UIUX & FE | BE | BE | BE |
 |----------|----------|----------|----------|
 | 한승연  | 김채원  | 복지희  | 이채원  |
 
 
-## :fire:기술스택
+## :fire:기술 스택
 
 ### :star2:UI/UX
 <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
@@ -27,6 +27,9 @@
 </div>
 
 
-## 관련 링크 
-피그마 프로토타입 
-https://www.figma.com/file/sMBmRIvX0zsTueXHwcg79v/Freshmen-community?type=design&node-id=2%3A614&mode=design&t=KAqdUumzBLTux4O2-1
+## :fire:관련 링크
+:dizzy: [팀 노션](https://www.notion.so/suuujin-kim/2023-2-6c14d316e1ae4d2abfd644e0b4309daf?p=c88b7fd474d242b3b165b33aed8974d6&pm=s) <br>
+:dizzy: [API 명세서](https://www.notion.so/suuujin-kim/2023-2-6c14d316e1ae4d2abfd644e0b4309daf?p=7cbdcd591a8d44f9b72b0de1f2dbce8e&pm=s) <br>
+:dizzy: [피그마 프로토타입](https://www.figma.com/file/sMBmRIvX0zsTueXHwcg79v/Freshmen-community?type=design&node-id=2%3A614&mode=design&t=KAqdUumzBLTux4O2-1) <br>
+
+
