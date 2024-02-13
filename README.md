@@ -1,5 +1,5 @@
 # FreshmanCommunity
-
+![image](https://github.com/chaewonni/FreshmanCommunity/assets/113420297/c468ec53-1740-4fc4-b544-cd0d6f2f75d6)
 
 ## 팀원소개
 <table>
