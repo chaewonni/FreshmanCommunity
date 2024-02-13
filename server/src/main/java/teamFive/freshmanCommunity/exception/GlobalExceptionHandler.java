@@ -45,4 +45,12 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(BoardNotFoundByIdException.class)
+    public ResponseEntity<String> handleBoardNotFoundByIdException(BoardNotFoundByIdException e){
+        log.error("{}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(e.getMessage());
+    }
 }

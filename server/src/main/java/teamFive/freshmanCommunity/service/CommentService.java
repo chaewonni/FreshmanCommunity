@@ -7,6 +7,7 @@ import teamFive.freshmanCommunity.dto.CommentDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Comment;
 import teamFive.freshmanCommunity.entity.Member;
+import teamFive.freshmanCommunity.exception.BoardNotFoundByIdException;
 import teamFive.freshmanCommunity.exception.BoardNotFoundException;
 import teamFive.freshmanCommunity.exception.CommentNotFoundException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
@@ -25,7 +26,7 @@ public class CommentService {
     public List<CommentDto> comments(Long articleId) {
         //articleId가 없을 경우 에러
         if(articleRepository.findById(articleId).isEmpty())
-            throw new BoardNotFoundException();
+            throw new BoardNotFoundByIdException();
         //dto로 변환해서 반환
         return commentRepository.findByArticleId(articleId)
                 .stream()
@@ -37,7 +38,7 @@ public class CommentService {
     public CommentDto create(Long articleId, CommentDto dto, Member member) {
         //api로 content만
         Article article = articleRepository.findById(articleId)
-                .orElseThrow(()-> new BoardNotFoundException());
+                .orElseThrow(()-> new BoardNotFoundByIdException());
 
         Comment created = Comment.createNewComment(dto, article, member);  //likesCount는 처음생성하면 0개니까 자동생성되도록
         Comment save = commentRepository.save(created);
