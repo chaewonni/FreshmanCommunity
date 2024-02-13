@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teamFive.freshmanCommunity.dto.ArticleDto;
+import teamFive.freshmanCommunity.dto.ArticleReadDto;
 import teamFive.freshmanCommunity.dto.CreateArticleDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
@@ -23,9 +24,9 @@ public class ArticleApiController {
 
     //1. 게시글 조회
     @GetMapping("/articles/{majorId}")
-    public ResponseEntity<List<ArticleDto>> showAll(@PathVariable Long majorId) {
+    public ResponseEntity<List<ArticleReadDto>> showAll(@PathVariable Long majorId) {
         // 서비스에 위임
-        List<ArticleDto> dtos = articleService.articles(majorId);
+        List<ArticleReadDto> dtos = articleService.articles(majorId);
         // 예외 처리
         if (dtos == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -36,10 +37,10 @@ public class ArticleApiController {
 
     //2. 게시글 생성
     @PostMapping("/articles/{majorId}")
-    public ResponseEntity<ArticleDto> create(@PathVariable Long majorId,
+    public ResponseEntity<ArticleReadDto> create(@PathVariable Long majorId,
                                              @RequestBody CreateArticleDto dto,
                                              HttpServletRequest request) {
-        ArticleDto createdDto = articleService.create(majorId, dto, request);
+        ArticleReadDto createdDto = articleService.create(majorId, dto, request);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 }
