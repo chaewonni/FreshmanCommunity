@@ -1,0 +1,142 @@
+body {
+  /* background-color: lightgray; */
+  margin: 3% 10% 0 10%;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#header-top {
+  display: flex;
+  /* width: 10vw; */
+  /* background-color: lightcoral; */
+  position: absolute;
+  padding-left: 64vw;
+}
+#header-top a {
+  text-decoration: none;
+  color: #000000;
+  /* background-color: lightcyan; */
+  margin-left: 2vw;
+}
+
+#header-mid {
+  width: 100%;
+  display: flex;
+}
+#header-mid-left {
+  /* background-color: lightsalmon; */
+  font-weight: 500;
+}
+#header-mid-left p {
+  font-size: 1.5rem;
+}
+#header-mid-left #ewha p span {
+  color: #00462a;
+}
+#header-mid-left #logo {
+  font-size: 3rem;
+}
+#header-mid-left #logo h1 {
+  margin: 0;
+}
+#header-mid-left #logo h1 span {
+  color: #00462a;
+}
+
+/* 이화여대 로고 */
+#header-mid img {
+  /* background-color: lightseagreen; */
+  margin: 4vh 0 0 40vh;
+  width: 13%;
+  height: 13%;
+}
+
+/* 메인 */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 5vh;
+  /* background-color: lightyellow; */
+}
+main .card {
+  flex: 0 0 30%; /* 한 줄에 3개의 열로 나누기 위해 100% / 3 */
+  box-sizing: border-box;
+  margin-bottom: 8vh;
+  padding: 2vh 5vh 0 5vh;
+  background-color: #bddebd;
+  aspect-ratio: 1/1;
+  box-shadow: 0 5px 15px gray;
+}
+main .card .text {
+  display: flex;
+  align-items: center;
+
+  /* background-color: lightpink; */
+  height: 30vh;
+  font-size: 3vh;
+  line-height: 2.5rem;
+  font-weight: bolder;
+  text-align: center;
+
+  overflow-wrap: break-word;
+}
+
+main .card footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* background-color: lightskyblue; */
+  height: 4vh;
+}
+main .card footer .author {
+  align-self: center;
+  background-color: #87a68779;
+  padding: 0.7vh 1vw 0.7vh 1vw;
+  border-radius: 40px;
+}
+main .card footer .liked-number {
+  display: flex;
+  padding-top: 0.7vh;
+  /* background-color: lightgrey; */
+}
+main .card footer .liked-number #liked-number-count {
+  margin-left: 0.2vw;
+  font-weight: 500;
+}
+
+/* 새 글 작성 버튼, 맨 위로 올라가기 버튼 */
+body #button-container {
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 배치 */
+  position: fixed;
+  right: 3%;
+  bottom: 5%;
+}
+
+body #button-container button {
+  margin-bottom: 2vh;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50%;
+  border: none;
+  background-color: #c3c3c3;
+  color: #ffffff;
+  font-size: medium;
+
+  align-items: center;
+  justify-items: center;
+}
+
+body #button-container p {
+  /* background-color: lightcoral; */
+  margin: 0;
+}
