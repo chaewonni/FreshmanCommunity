@@ -28,8 +28,8 @@
 
 
 ## :fire:관련 링크
-:dizzy: [팀 노션](https://www.notion.so/suuujin-kim/2023-2-6c14d316e1ae4d2abfd644e0b4309daf?p=c88b7fd474d242b3b165b33aed8974d6&pm=s) <br>
-:dizzy: [API 명세서](https://www.notion.so/suuujin-kim/2023-2-6c14d316e1ae4d2abfd644e0b4309daf?p=7cbdcd591a8d44f9b72b0de1f2dbce8e&pm=s) <br>
+:dizzy: [팀 노션](https://www.notion.so/suuujin-kim/5-c88b7fd474d242b3b165b33aed8974d6) <br>
+:dizzy: [API 명세서](https://www.notion.so/suuujin-kim/API-7cbdcd591a8d44f9b72b0de1f2dbce8e) <br>
 :dizzy: [피그마 프로토타입](https://www.figma.com/file/sMBmRIvX0zsTueXHwcg79v/Freshmen-community?type=design&node-id=2%3A614&mode=design&t=KAqdUumzBLTux4O2-1) <br>
 
 
