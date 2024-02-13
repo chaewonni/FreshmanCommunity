@@ -1,4 +1,4 @@
-# FreshmanCommunity
+# 무엇이든 물어벗살
 ![image](https://github.com/chaewonni/FreshmanCommunity/assets/113420297/c468ec53-1740-4fc4-b544-cd0d6f2f75d6)
 
 ## :fire:프로젝트 소개 
