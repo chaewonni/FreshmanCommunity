@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
-import teamFive.freshmanCommunity.dto.CommentDto;
+import teamFive.freshmanCommunity.dto.CommentRequestDto;
 
 import java.time.LocalDateTime;
 
@@ -38,7 +38,7 @@ public class Comment {
     @JoinColumn(name="article_id")
     private Article article;
 
-    public static Comment createNewComment(CommentDto dto, Article article, Member member){
+    public static Comment createNewComment(CommentRequestDto dto, Article article, Member member){
         //API로 content만 전달됨
         //처음 comment 만들면 좋아요개수 자동 0개
         return new Comment(
@@ -50,7 +50,7 @@ public class Comment {
                 article);
     }
 
-    public void patch(CommentDto dto) {
+    public void patch(CommentRequestDto dto) {
         if(this.content != dto.getContent())
             this.content = dto.getContent();
     }
