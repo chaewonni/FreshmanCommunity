@@ -13,14 +13,16 @@ import lombok.NoArgsConstructor;
 public class LoginResponseDto {
     private Long id;
     private String memberName;
+    private String studentId;
     private Major major;
 
-//    public static LoginResponseDto loginResponseDto(Member member){
-//        return new LoginResponseDto(
-//                member.getId(),
-//                member.getMemberName(),
-//                member.getMajor().getMajorName()
-//        );
-//    }
+    public static LoginResponseDto createLoginDto(Member member){
+        return new LoginResponseDto(
+                member.getId(),
+                member.getMemberName(),
+                member.getStudentId(),
+                member.getMajor()
+        );
+    }
 
 }
