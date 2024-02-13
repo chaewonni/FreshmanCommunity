@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @ToString
-public class CommentResponseDto {   //댓글 요청시 들어오는
+public class CommentResponseDto {   //댓글 요청시 돌려줄 값
     private Long id;
     private String content;
     private LocalDateTime createDate;
     private int likesCount;
-    private Long memberId;  //member FK
+    private LoginResponseDto member;
     private Long articleId;    //article FK
 
     public static CommentResponseDto createCommentDto(Comment comment){
@@ -26,7 +26,7 @@ public class CommentResponseDto {   //댓글 요청시 들어오는
                 comment.getContent(),
                 comment.getCreateDate(),
                 comment.getLikesCount(),
-                comment.getMember().getId(),
+                LoginResponseDto.createLoginDto(comment.getMember()),
                 comment.getArticle().getId());
     }
 }

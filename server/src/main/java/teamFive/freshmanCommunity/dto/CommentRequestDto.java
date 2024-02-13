@@ -9,7 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString
-public class CommentRequestDto {
+public class CommentRequestDto {    //댓글 요청시 들어오는 body
     private Long id;    //commentId
     private String content;
 }
