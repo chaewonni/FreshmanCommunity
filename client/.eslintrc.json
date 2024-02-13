@@ -1,5 +1,4 @@
 {
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest"
   },
@@ -9,9 +8,9 @@
     "commonjs": true,
     "es2022": true
   },
-  "globals": {"_": true},
+  "globals": { "_": true },
   "plugins": ["import", "html"],
-  "extends": ["airbnb-base", "prettier"],
+  "extends": ["airbnb-base", "react-app"],
   "rules": {
     // "off" or 0 - turn the rule off
     // "warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
@@ -31,8 +30,13 @@
     "no-restricted-syntax": ["off", "ForOfStatement"], // disallow specified syntax(ex. WithStatement)
     "prefer-arrow-callback": "error", // Require using arrow functions for callbacks
     "require-await": "error",
+    "import/export": "off",
+    "import/named": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
     "arrow-parens": ["error", "as-needed"], // a => {}
-    "no-param-reassign": ["error", {"props": false}],
+    "no-param-reassign": ["error", { "props": false }],
     "no-unused-expressions": [
       "error",
       {
@@ -41,7 +45,7 @@
         "allowTaggedTemplates": true
       }
     ],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "max-len": [
       "error",
       {
