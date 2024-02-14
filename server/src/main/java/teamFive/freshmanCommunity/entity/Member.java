@@ -33,7 +33,7 @@ public class Member {
 
     //학과 정보
     @ManyToOne
-    @JoinColumn(name = "majorId")
+    @JoinColumn(name = "major_id")
     private Major major;
 
 
