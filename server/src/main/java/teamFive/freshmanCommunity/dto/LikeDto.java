@@ -9,12 +9,12 @@ import teamFive.freshmanCommunity.entity.LikeComment;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LikeDto {
-    private String result;
+    private String message;
     private boolean status;
 
-    public static LikeDto createLikeDto(String result, LikeComment likeComment) {
+    public static LikeDto createLikeDto(String message, LikeComment likeComment) {
         return new LikeDto(
-                result,
+                message,
                 likeComment.isStatus()
         );
     }
