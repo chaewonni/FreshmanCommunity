@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import teamFive.freshmanCommunity.dto.LikeDto;
 import teamFive.freshmanCommunity.entity.LikeComment;
 import teamFive.freshmanCommunity.service.LikeCommentService;
 
@@ -18,11 +19,11 @@ public class LikeCommentApiController {
     private final LikeCommentService likeCommentService;
 
     @PostMapping("/comment/{commentId}/like")
-    public ResponseEntity<String> addLike(@PathVariable Long commentId, HttpServletRequest request) {
+    public ResponseEntity<LikeDto> addLike(@PathVariable Long commentId, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        LikeCommentService.addLike(commentId, session);
-        return ResponseEntity.status(HttpStatus.OK).body("좋아요 처리 완료");
+        LikeDto like = likeCommentService.addLike(commentId, session);
+        return ResponseEntity.status(HttpStatus.OK).body(like);
     }
 
 }
