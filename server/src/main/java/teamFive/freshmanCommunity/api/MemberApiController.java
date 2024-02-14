@@ -29,13 +29,14 @@ public class MemberApiController {
     //로그인
     @PostMapping("/user/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto, HttpServletRequest request){
+
         Member member = memberService.login(loginDto);
 
         if (member != null) {
             // 로그인 성공
             HttpSession session = request.getSession();
             session.setAttribute("member", member);
-            LoginResponseDto response = new LoginResponseDto(member.getId(), member.getMemberName(),member.getStudentId(), member.getMajor());
+            LoginResponseDto response = LoginResponseDto.createLoginDto(member);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } else{
             // 로그인 실패
