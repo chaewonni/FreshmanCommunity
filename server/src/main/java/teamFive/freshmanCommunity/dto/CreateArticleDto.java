@@ -22,7 +22,8 @@ public class CreateArticleDto {
                 n.getTitle(),
                 n.getContent(),
                 n.getCreateDate(),
-                n.getMember()
+                n.getMember(),
+                n.getMajor()
         );
     }
 
