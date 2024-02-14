@@ -18,7 +18,7 @@ public class ArticleDto {
     private String content;
     private LocalDateTime createDate;
     private Member member;
-
+    private Major major;
 
     public static ArticleDto createArticleDto(Article created) {
         return new ArticleDto(
@@ -26,7 +26,8 @@ public class ArticleDto {
                 created.getTitle(),
                 created.getContent(),
                 created.getCreateDate(),
-                created.getMember()
+                created.getMember(),
+                created.getMajor()
         );
     }
 
