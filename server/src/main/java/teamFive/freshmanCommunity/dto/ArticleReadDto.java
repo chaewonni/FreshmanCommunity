@@ -12,6 +12,6 @@ public class ArticleReadDto {
     private String title;
     private String content;
     private LocalDateTime createDate;
-    private LoginResponseDto loginResponseDto;
+    private LoginResponseDto memberReadDto;
 
 }
