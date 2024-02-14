@@ -6,14 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import teamFive.freshmanCommunity.dto.ArticleDto;
 import teamFive.freshmanCommunity.dto.ArticleReadDto;
-import teamFive.freshmanCommunity.dto.CreateArticleDto;
-import teamFive.freshmanCommunity.entity.Article;
-import teamFive.freshmanCommunity.repository.ArticleRepository;
+import teamFive.freshmanCommunity.dto.ArticleCreateDto;
 import teamFive.freshmanCommunity.service.ArticleService;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -38,7 +34,7 @@ public class ArticleApiController {
     //2. 게시글 생성
     @PostMapping("/articles/{majorId}")
     public ResponseEntity<ArticleReadDto> create(@PathVariable Long majorId,
-                                             @RequestBody CreateArticleDto dto,
+                                             @RequestBody ArticleCreateDto dto,
                                              HttpServletRequest request) {
         ArticleReadDto createdDto = articleService.create(majorId, dto, request);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);

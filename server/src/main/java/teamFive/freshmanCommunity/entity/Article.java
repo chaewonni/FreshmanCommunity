@@ -3,7 +3,7 @@ package teamFive.freshmanCommunity.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import teamFive.freshmanCommunity.dto.CreateArticleDto;
+import teamFive.freshmanCommunity.dto.ArticleCreateDto;
 
 import java.time.LocalDateTime;
 
@@ -31,7 +31,7 @@ public class Article {
     @JoinColumn(name="majorId")
     private Major major;
 
-    public static Article create(CreateArticleDto dto, Major major, Member member) {
+    public static Article create(ArticleCreateDto dto, Major major, Member member) {
 
         return new Article(
                 null,

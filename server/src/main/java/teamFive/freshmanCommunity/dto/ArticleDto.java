@@ -37,7 +37,8 @@ public class ArticleDto {
                 n.getTitle(),
                 n.getContent(),
                 n.getCreateDate(),
-                LoginResponseDto.createLoginDto(n.getMember())
+                LoginResponseDto.createLoginDto(n.getMember()),
+                n.getMajor()
         );
     }
 }

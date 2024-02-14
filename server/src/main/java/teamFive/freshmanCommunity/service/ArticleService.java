@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import teamFive.freshmanCommunity.dto.ArticleDto;
-import teamFive.freshmanCommunity.dto.CreateArticleDto;
+import teamFive.freshmanCommunity.dto.ArticleCreateDto;
 import teamFive.freshmanCommunity.dto.ArticleReadDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Major;
@@ -32,7 +32,7 @@ public class ArticleService {
     private MemberRepository memberRepository;
 
     @Transactional
-    public ArticleReadDto create(Long majorId, CreateArticleDto dto, HttpServletRequest request) {
+    public ArticleReadDto create(Long majorId, ArticleCreateDto dto, HttpServletRequest request) {
         // 1-1. 학과 조회 및 예외 발생
         Major major = majorRepository.findById(majorId)
                 .orElseThrow(() -> new BoardNotFoundException());
