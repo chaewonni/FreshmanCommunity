@@ -27,14 +27,19 @@ public class Article {
     @JoinColumn(name="memberId")
     private Member member;
 
-    public static Article create(CreateArticleDto dto, Member member) {
+    @ManyToOne
+    @JoinColumn(name="majorId")
+    private Major major;
+
+    public static Article create(CreateArticleDto dto, Major major, Member member) {
 
         return new Article(
                 null,
                 dto.getTitle(),
                 dto.getContent(),
                 null,
-                member
+                member,
+                major
         );
     }
 }
