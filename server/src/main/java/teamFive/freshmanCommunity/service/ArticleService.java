@@ -41,7 +41,7 @@ public class ArticleService {
         Member member = (Member) session.getAttribute("member");
         if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
         // 2. 게시글 엔티티 생성
-        Article article = Article.create(dto, member);
+        Article article = Article.create(dto, major, member);
         // 3. 게시글 엔티티를 db에 저장
         Article created = articleRepository.save(article);
         // 4. dto로 변환해 리턴
