@@ -21,7 +21,7 @@ public class LikeCommentApiController {
     public ResponseEntity<String> addLike(@PathVariable Long commentId, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        LikeComment.addLike(commentId, session);
+        LikeCommentService.addLike(commentId, session);
         return ResponseEntity.status(HttpStatus.OK).body("좋아요 처리 완료");
     }
 
