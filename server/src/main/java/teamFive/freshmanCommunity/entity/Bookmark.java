@@ -20,6 +20,12 @@ public class Bookmark {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private boolean status;
+
+    @Column
+    private LocalDateTime createDate;
+
     @ManyToOne
     @JoinColumn(name = "member_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -30,15 +36,13 @@ public class Bookmark {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Article article;
 
-    @Column(nullable = false)
-    private boolean status;
-
     public static Bookmark createBookmark(Member member, Article article) {
         return new Bookmark(
                 null,
+                true,
+                LocalDateTime.now(),
                 member,
-                article,
-                true
+                article
         );
     }
 
