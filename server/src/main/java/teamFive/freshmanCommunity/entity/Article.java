@@ -20,13 +20,14 @@ public class Article {
     private String title;
     @Column
     private String content;
+    @Column
+    private int bookmarkCount;
     @CreationTimestamp
     @Column
     private LocalDateTime createDate;
     @ManyToOne
     @JoinColumn(name="memberId")
     private Member member;
-
     @ManyToOne
     @JoinColumn(name="majorId")
     private Major major;
@@ -37,6 +38,7 @@ public class Article {
                 null,
                 dto.getTitle(),
                 dto.getContent(),
+                0,
                 null,
                 member,
                 major
