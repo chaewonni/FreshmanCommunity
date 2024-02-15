@@ -16,6 +16,7 @@ public class ArticleDto {
     private Long id;
     private String title;
     private String content;
+    private int bookmarkCount;
     private LocalDateTime createDate;
     private Member member;
     private Major major;
@@ -25,6 +26,7 @@ public class ArticleDto {
                 created.getId(),
                 created.getTitle(),
                 created.getContent(),
+                created.getBookmarkCount(),
                 created.getCreateDate(),
                 created.getMember(),
                 created.getMajor()
@@ -36,6 +38,7 @@ public class ArticleDto {
                 n.getId(),
                 n.getTitle(),
                 n.getContent(),
+                n.getBookmarkCount(),
                 n.getCreateDate(),
                 LoginResponseDto.createLoginDto(n.getMember()),
                 n.getMajor()
