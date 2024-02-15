@@ -1,12 +1,14 @@
 package teamFive.freshmanCommunity.service;
 
 import teamFive.freshmanCommunity.dto.LoginDto;
+import teamFive.freshmanCommunity.dto.MyBookmarkDto;
 import teamFive.freshmanCommunity.dto.SignupDto;
 import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.DuplicateMemberException;
 import teamFive.freshmanCommunity.exception.IncorrectPasswordException;
 import teamFive.freshmanCommunity.exception.MemberNotFoundException;
+import teamFive.freshmanCommunity.repository.BookmarkRepository;
 import teamFive.freshmanCommunity.repository.MajorRepository;
 import teamFive.freshmanCommunity.repository.MemberRepository;
 import jakarta.servlet.http.HttpSession;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +27,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final MajorRepository majorRepository;
     private final PasswordEncoder passwordEncoder;
+    private final BookmarkRepository bookmarkRepository;
 
     @Transactional
     //회원가입
@@ -75,4 +79,11 @@ public class MemberService {
         memberRepository.delete(member);
     }
 
+    //나의 북마크
+    public List<MyBookmarkDto> myBookmark(HttpSession session) {
+        Member member = (Member) session.getAttribute("member");
+        return bookmarkRepository.findAllByMemberOrderByCreateDateDesc(member).stream()
+                .map(bookmark -> MyBookmarkDto.createMyBookmarkDto(bookmark.getArticle()))
+                .collect(Collectors.toList());
+    }
 }
