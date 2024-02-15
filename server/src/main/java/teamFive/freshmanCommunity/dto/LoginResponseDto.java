@@ -1,5 +1,6 @@
 package teamFive.freshmanCommunity.dto;
 
+import lombok.Getter;
 import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 //@NoArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class LoginResponseDto {
     private Long id;
     private String memberName;
