@@ -40,9 +40,6 @@ public class MemberApiController {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } else{
             // 로그인 실패
-//            HttpSession session = request.getSession();
-//            session.removeAttribute("member");
-//            session.invalidate();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
         }
     }
@@ -57,7 +54,8 @@ public class MemberApiController {
 
     //회원탈퇴
     @DeleteMapping("/user/delete")
-    public ResponseEntity<String> delete(HttpSession session){
+    public ResponseEntity<String> delete(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
         Member member = (Member) session.getAttribute("member");
 
         if (member != null){
