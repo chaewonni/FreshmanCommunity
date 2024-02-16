@@ -51,6 +51,28 @@ body {
   height: 13%;
 }
 
+/* 과 선택 옵션 */
+
+.choose-major label {
+  font-size: larger;
+  font-weight: 600;
+}
+
+.choose-major-option {
+  margin-top: 3vh;
+  padding: 10px;
+  font-size: large;
+  font-weight: 600;
+
+  border: 2px #056c43 solid;
+  border-radius: 6px;
+  cursor: pointer;
+
+  -webkit-appearance: none; /* 크롬 화살표 없애기 */
+  -moz-appearance: none; /* 파이어폭스 화살표 없애기 */
+  appearance: none; /* 화살표 없애기 */
+}
+
 /* 메인 */
 main {
   display: flex;
