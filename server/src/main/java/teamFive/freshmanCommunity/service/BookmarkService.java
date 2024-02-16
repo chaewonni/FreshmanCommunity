@@ -9,6 +9,7 @@ import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Bookmark;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.BoardNotFoundException;
+import teamFive.freshmanCommunity.exception.MemberNotFoundException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
 import teamFive.freshmanCommunity.repository.BookmarkRepository;
 
@@ -25,6 +26,8 @@ public class BookmarkService {
         Member member = (Member) session.getAttribute("member");
         Article article = articleRepository.findById(articleId).
                 orElseThrow(() -> new BoardNotFoundException());
+
+        if(member == null) throw new MemberNotFoundException("로그인하지 않은 상태에선 북마크를 할 수 없습니다.");
 
         if(bookmarkRepository.findByMemberAndArticle(member, article) == null) {
             article.setBookmarkCount(article.getBookmarkCount()+1);
