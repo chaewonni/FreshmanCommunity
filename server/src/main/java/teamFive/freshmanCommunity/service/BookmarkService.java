@@ -27,13 +27,13 @@ public class BookmarkService {
                 orElseThrow(() -> new BoardNotFoundException());
 
         if(bookmarkRepository.findByMemberAndArticle(member, article) == null) {
-            article.setBookmarkCount(article.getBookmarkCount() + 1);
+            article.setBookmarkCount(article.getBookmarkCount()+1);
             Bookmark bookmark = Bookmark.createBookmark(member, article);
             bookmarkRepository.save(bookmark);
             return BookmarkDto.createBookmarkDto("북마크 처리 완료", bookmark);
         }
         else {
-            article.setBookmarkCount(article.getBookmarkCount() - 1);
+            article.setBookmarkCount(article.getBookmarkCount()-1);
             Bookmark bookmark = bookmarkRepository.findByMemberAndArticle(member, article);
             bookmark.deleteBookmark(article); //false처리
             bookmarkRepository.deleteByMemberAndArticle(member, article);
