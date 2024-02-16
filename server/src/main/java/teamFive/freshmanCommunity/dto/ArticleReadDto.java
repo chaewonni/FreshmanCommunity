@@ -12,6 +12,7 @@ public class ArticleReadDto {
     private Long id;
     private String title;
     private String content;
+    private int bookmarkCount;
     private LocalDateTime createDate;
     // 유저의 메이저 정보를 포함
     private LoginResponseDto memberReadDto;

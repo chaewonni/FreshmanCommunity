@@ -14,6 +14,7 @@ public class ArticleCreateDto {
                 n.getId(),
                 n.getTitle(),
                 n.getContent(),
+                n.getBookmarkCount(),
                 n.getCreateDate(),
                 n.getMember(),
                 n.getMajor()
