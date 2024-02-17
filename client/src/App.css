@@ -23,6 +23,7 @@ body {
 }
 
 #header-mid {
+  /* background-color: lightblue; */
   width: 100%;
   display: flex;
 }
@@ -47,12 +48,10 @@ body {
   color: #00462a;
 }
 
-/* 이화여대 로고 */
-#header-mid img {
-  /* background-color: lightseagreen; */
-  margin: 4vh 0 0 40vh;
-  width: 13%;
-  height: 13%;
+header #header-mid .ewha-logo img {
+  margin: 4vh 0 0 25vh;
+  width: 300px;
+  height: 300px;
 }
 
 /* 과 선택 옵션 */
@@ -149,16 +148,16 @@ body #button-container p {
 }
 
 .MuiBox-root.css-0 header {
-  /* background-color: lightseagreen; */
+  width: 700px;
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: 15px;
   display: flex;
   align-items: center;
 }
 
 .MuiBox-root.css-0 header img {
   border-radius: 50%;
-  width: 80px;
+  width: 60px;
 }
 
 /* 글 작성자 과,학번, 글 작성 날짜  */
