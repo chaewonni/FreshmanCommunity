@@ -13,6 +13,7 @@ import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.ArticleNotFoundException;
+import teamFive.freshmanCommunity.exception.BoardNotFoundByIdException;
 import teamFive.freshmanCommunity.exception.BoardNotFoundException;
 import teamFive.freshmanCommunity.exception.MemberNotFoundException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
@@ -68,6 +69,8 @@ public class ArticleService {
     }
 
     public ArticleReadDto oneArticle(Long majorId, Long articleId) {
+        // 0.5. 게시판 존재 여부 확인
+        Major major = majorRepository.findById(majorId).orElseThrow(() -> new BoardNotFoundByIdException());
         // 1. 게시글 조회
         Article article = articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException());
         // 2. 엔티티 -> DTO 반환
