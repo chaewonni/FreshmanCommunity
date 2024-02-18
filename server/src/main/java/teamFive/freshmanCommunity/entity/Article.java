@@ -2,8 +2,10 @@ package teamFive.freshmanCommunity.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
 import teamFive.freshmanCommunity.dto.ArticleCreateDto;
+import teamFive.freshmanCommunity.exception.IdConflictWithDtoException;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@Slf4j
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +39,7 @@ public class Article {
     public static Article create(ArticleCreateDto dto, Major major, Member member) {
 
         return new Article(
-                null,
+                dto.getId(),
                 dto.getTitle(),
                 dto.getContent(),
                 0,
@@ -44,5 +47,20 @@ public class Article {
                 member,
                 major
         );
+    }
+
+    public void patch(ArticleCreateDto dto) {
+        log.info(this.getId() + " " + dto.getId());
+        // 예외 발생
+        if (this.getId() != dto.getId()) {
+            throw new IdConflictWithDtoException();
+        }
+        // 수정
+        if (this.getTitle() != dto.getTitle()) {
+            this.setTitle(dto.getTitle());
+        }
+        if (this.getContent() != dto.getContent()) {
+            this.setContent(dto.getContent());
+        }
     }
 }
