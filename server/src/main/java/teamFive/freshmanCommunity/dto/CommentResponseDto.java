@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class CommentResponseDto {   //댓글 요청시 돌려줄 값
     private Long id;
     private String content;
-    private LocalDateTime createDate;
+    private String createDate;
     private int likesCount;
     private LoginResponseDto member;
     private Long articleId;    //article FK

@@ -3,9 +3,11 @@ package teamFive.freshmanCommunity.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
 import teamFive.freshmanCommunity.dto.CommentRequestDto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +24,11 @@ public class Comment {
     private String content;
 
     @Column
-    private LocalDateTime createDate;
+    private String createDate;
+    @PrePersist //해당 엔티티를 저장하기 이전에 실행
+    public void datePrePersist(){
+        this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 
     @Column
     @ColumnDefault("0") //기본값 0
@@ -42,7 +48,7 @@ public class Comment {
         return new Comment(
                 dto.getId(),
                 dto.getContent(),
-                LocalDateTime.now(),
+                null,
                 0,
                 member,
                 article);
