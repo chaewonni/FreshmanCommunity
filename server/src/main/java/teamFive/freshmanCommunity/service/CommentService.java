@@ -27,8 +27,8 @@ public class CommentService {
         //articleId가 없을 경우 에러
         if(articleRepository.findById(articleId).isEmpty())
             throw new BoardNotFoundByIdException();
-        //dto로 변환해서 반환
-        return commentRepository.findByArticleId(articleId)
+        //dto로 변환해서 반환(10개 이상시 맨 위로 올라가도록)
+        return commentRepository.findByArticleIdOrderByLikes(articleId)
                 .stream()
                 .map(comment -> CommentResponseDto.createCommentDto(comment))
                 .collect(Collectors.toList());

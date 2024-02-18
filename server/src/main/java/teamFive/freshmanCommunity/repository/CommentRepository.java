@@ -14,7 +14,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     //댓글 좋아요 10개 넘으면 맨 위로
     @Query(value = "SELECT * FROM comment " +
             "WHERE article_id = :articleId " +
-            "ORDER BY CASE WHEN likes >= 10 THEN 0 ELSE 1 END, likesCount DESC",    //0인 댓글들 먼저 정렬하고
-            nativeQuery = true)
-    List<Comment> findAllOrderByLikes(Long articleId);
+            "ORDER BY CASE WHEN likes_count >= 10 THEN 0 ELSE 1 END, likes_count DESC",    //0인 댓글들 먼저 정렬하고
+            nativeQuery = true )    //SQL문으로 사용
+    List<Comment> findByArticleIdOrderByLikes(Long articleId);
 }
