@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import teamFive.freshmanCommunity.dto.CommentRequestDto;
 import teamFive.freshmanCommunity.dto.CommentResponseDto;
 import teamFive.freshmanCommunity.entity.Member;
+import teamFive.freshmanCommunity.exception.MemberNotFoundException;
 import teamFive.freshmanCommunity.service.CommentService;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class CommentApiController {
     public ResponseEntity<CommentResponseDto> create(@PathVariable Long articleId, @RequestBody CommentRequestDto dto, HttpSession session){
         //세션에서 member 불러오기
         Member member = (Member) session.getAttribute("member");
+        if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
 
         CommentResponseDto createDto = commentService.create(articleId, dto, member);
         return ResponseEntity.status(HttpStatus.OK).body(createDto);
