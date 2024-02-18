@@ -10,6 +10,7 @@ import teamFive.freshmanCommunity.entity.Comment;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.BoardNotFoundByIdException;
 import teamFive.freshmanCommunity.exception.CommentNotFoundException;
+import teamFive.freshmanCommunity.exception.NotSameMemberException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
 import teamFive.freshmanCommunity.repository.CommentRepository;
 
@@ -46,19 +47,26 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponseDto update(Long commentId, CommentRequestDto dto) {
+    public CommentResponseDto update(Long commentId, CommentRequestDto dto, Member member) {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()->new CommentNotFoundException());
-        //수정사항 content 밖에 없음
+        //지우려는 댓글이 로그인한 유저가 아닌 경우 수정 불가
+        if(target.getMember() != member)
+            throw new NotSameMemberException();
+
         target.patch(dto);
         Comment save = commentRepository.save(target);
         return CommentResponseDto.createCommentDto(save);
     }
 
     @Transactional
-    public void delete(Long commentId) {
+    public void delete(Long commentId, Member member) {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()-> new CommentNotFoundException());
+        //지우려는 댓글이 로그인한 유저가 아닌 경우 삭제 불가
+        if(target.getMember() != member)
+            throw new NotSameMemberException();
+
         commentRepository.delete(target);
     }
 }

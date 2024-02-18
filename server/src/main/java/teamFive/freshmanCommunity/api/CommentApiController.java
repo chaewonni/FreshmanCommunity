@@ -36,14 +36,20 @@ public class CommentApiController {
     }
 
     @PatchMapping("/comment/{commentId}")
-    public ResponseEntity<CommentResponseDto> update(@PathVariable Long commentId, @RequestBody CommentRequestDto dto){
-        CommentResponseDto target = commentService.update(commentId, dto);
+    public ResponseEntity<CommentResponseDto> update(@PathVariable Long commentId, @RequestBody CommentRequestDto dto, HttpSession session){
+        Member member = (Member) session.getAttribute("member");
+        if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
+
+        CommentResponseDto target = commentService.update(commentId, dto, member);
         return ResponseEntity.status(HttpStatus.OK).body(target);
     }
 
     @DeleteMapping("/comment/{commentId}")
-    public ResponseEntity<String> delete(@PathVariable Long commentId){
-        commentService.delete(commentId);
+    public ResponseEntity<String> delete(@PathVariable Long commentId, HttpSession session){
+        Member member = (Member) session.getAttribute("member");
+        if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
+
+        commentService.delete(commentId, member);
         return ResponseEntity.status(HttpStatus.OK).body("댓글 삭제 완료");
     }
 }
