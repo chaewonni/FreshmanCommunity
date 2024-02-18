@@ -2,27 +2,23 @@ package teamFive.freshmanCommunity.service;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import teamFive.freshmanCommunity.dto.ArticleDto;
 import teamFive.freshmanCommunity.dto.ArticleCreateDto;
 import teamFive.freshmanCommunity.dto.ArticleReadDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
-import teamFive.freshmanCommunity.exception.ArticleNotFoundException;
-import teamFive.freshmanCommunity.exception.BoardNotFoundByIdException;
-import teamFive.freshmanCommunity.exception.BoardNotFoundException;
-import teamFive.freshmanCommunity.exception.MemberNotFoundException;
+import teamFive.freshmanCommunity.exception.*;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
 import teamFive.freshmanCommunity.repository.MajorRepository;
 import teamFive.freshmanCommunity.repository.MemberRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 @Service
 @AllArgsConstructor
@@ -77,5 +73,35 @@ public class ArticleService {
         ArticleReadDto dto = ArticleDto.createArticleReadDto(article);
         // 3. 결과 반환
         return dto;
+    }
+
+    @Transactional
+    public ArticleReadDto update(Long majorId, Long articleId, ArticleCreateDto dto) {
+        // 0.5. 게시판 존재 여부 확인
+        Major major = majorRepository.findById(majorId).orElseThrow(() -> new BoardNotFoundException());
+        // 1. 게시글 조회 및 예외 발생
+        Article target = articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException());
+        if (!(target.getMajor().getId().equals(majorId)))
+            throw new MajorConflictWithArticleException();
+        // 2. 게시글 수정
+        target.patch(dto);
+        // 3. DB로 갱신
+        Article updated = articleRepository.save(target);
+        // 4. 게시글 엔티티를 DTO로 변환 및 반환
+        return ArticleDto.createArticleReadDto(updated);
+    }
+
+    @Transactional
+    public ArticleReadDto delete(Long majorId, Long articleId) {
+        // 0.5. 게시판 존재 여부 확인
+        Major major = majorRepository.findById(majorId).orElseThrow(() -> new BoardNotFoundException());
+        // 1. 게시글 조회 및 예외 발생
+        Article target = articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException());
+        if (!(target.getMajor().getId().equals(majorId)))
+            throw new MajorConflictWithArticleException();
+        // 2. 게시글 삭제
+        articleRepository.delete(target);
+        // 3. 삭제 게시글 DTO 변환 및 리턴
+        return ArticleDto.createArticleReadDto(target);
     }
 }
