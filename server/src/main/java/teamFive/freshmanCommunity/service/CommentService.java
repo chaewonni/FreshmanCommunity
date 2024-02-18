@@ -37,11 +37,10 @@ public class CommentService {
 
     @Transactional
     public CommentResponseDto create(Long articleId, CommentRequestDto dto, Member member) {
-        //api로 content만
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(()-> new BoardNotFoundByIdException());
 
-        Comment created = Comment.createNewComment(dto, article, member);  //likesCount는 처음생성하면 0개니까 자동생성되도록
+        Comment created = Comment.createNewComment(dto, article, member);
         Comment save = commentRepository.save(created);
         return CommentResponseDto.createCommentDto(save);
     }
