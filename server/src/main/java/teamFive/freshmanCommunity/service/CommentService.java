@@ -56,10 +56,9 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponseDto delete(Long commentId) {
+    public void delete(Long commentId) {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()-> new CommentNotFoundException());
         commentRepository.delete(target);
-        return CommentResponseDto.createCommentDto(target);
     }
 }
