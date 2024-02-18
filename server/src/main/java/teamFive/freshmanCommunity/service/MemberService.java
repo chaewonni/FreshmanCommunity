@@ -44,6 +44,7 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    @Transactional
     private void validateDuplicateMember(SignupDto signupDto) {
         Long count = memberRepository.countByEmail(signupDto.getEmail());
         if (count > 0) {
@@ -52,6 +53,7 @@ public class MemberService {
         }
     }
 
+    @Transactional
     //로그인
     public Member login (LoginDto loginDto) {
         Member member = memberRepository.findByEmail(loginDto.getEmail());
@@ -60,7 +62,6 @@ public class MemberService {
         if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword()))
             throw new IncorrectPasswordException("비밀번호가 맞지 않습니다.");
 
-        member.clearPassword();
         return member;
     }
 
@@ -72,6 +73,7 @@ public class MemberService {
         }
     }
 
+    @Transactional
     //회원 탈퇴
     public void delete(Long memberId) {
         Member member = memberRepository.findById(memberId)
@@ -79,9 +81,13 @@ public class MemberService {
         memberRepository.delete(member);
     }
 
+    @Transactional
     //나의 북마크
     public List<MyBookmarkDto> myBookmark(HttpSession session) {
         Member member = (Member) session.getAttribute("member");
+
+        if(member == null) throw new MemberNotFoundException("로그인 후에 북마크 목록 확인이 가능합니다.");
+
         return bookmarkRepository.findAllByMemberOrderByCreateDateDesc(member).stream()
                 .map(bookmark -> MyBookmarkDto.createMyBookmarkDto(bookmark.getArticle()))
                 .collect(Collectors.toList());
