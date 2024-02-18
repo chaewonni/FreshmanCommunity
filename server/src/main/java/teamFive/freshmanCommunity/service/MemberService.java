@@ -1,12 +1,14 @@
 package teamFive.freshmanCommunity.service;
 
 import teamFive.freshmanCommunity.dto.LoginDto;
+import teamFive.freshmanCommunity.dto.MyBookmarkDto;
 import teamFive.freshmanCommunity.dto.SignupDto;
 import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.DuplicateMemberException;
 import teamFive.freshmanCommunity.exception.IncorrectPasswordException;
 import teamFive.freshmanCommunity.exception.MemberNotFoundException;
+import teamFive.freshmanCommunity.repository.BookmarkRepository;
 import teamFive.freshmanCommunity.repository.MajorRepository;
 import teamFive.freshmanCommunity.repository.MemberRepository;
 import jakarta.servlet.http.HttpSession;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +27,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final MajorRepository majorRepository;
     private final PasswordEncoder passwordEncoder;
+    private final BookmarkRepository bookmarkRepository;
 
     @Transactional
     //회원가입
@@ -40,6 +44,7 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    @Transactional
     private void validateDuplicateMember(SignupDto signupDto) {
         Long count = memberRepository.countByEmail(signupDto.getEmail());
         if (count > 0) {
@@ -48,6 +53,7 @@ public class MemberService {
         }
     }
 
+    @Transactional
     //로그인
     public Member login (LoginDto loginDto) {
         Member member = memberRepository.findByEmail(loginDto.getEmail());
@@ -56,7 +62,6 @@ public class MemberService {
         if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword()))
             throw new IncorrectPasswordException("비밀번호가 맞지 않습니다.");
 
-        member.clearPassword();
         return member;
     }
 
@@ -68,6 +73,7 @@ public class MemberService {
         }
     }
 
+    @Transactional
     //회원 탈퇴
     public void delete(Long memberId) {
         Member member = memberRepository.findById(memberId)
@@ -75,4 +81,15 @@ public class MemberService {
         memberRepository.delete(member);
     }
 
+    @Transactional
+    //나의 북마크
+    public List<MyBookmarkDto> myBookmark(HttpSession session) {
+        Member member = (Member) session.getAttribute("member");
+
+        if(member == null) throw new MemberNotFoundException("로그인 후에 북마크 목록 확인이 가능합니다.");
+
+        return bookmarkRepository.findAllByMemberOrderByCreateDateDesc(member).stream()
+                .map(bookmark -> MyBookmarkDto.createMyBookmarkDto(bookmark.getArticle()))
+                .collect(Collectors.toList());
+    }
 }
