@@ -15,7 +15,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "memberId")
+    @Column(name = "member_id")
     private Long id;
 
     @Column
@@ -27,21 +27,18 @@ public class Member {
     @Column
     private String email;
 
-//    @JsonIgnore //데이터의 이동에서 민감정보인 password를 숨기기 위해
     @Column
     private String password;
 
     //학과 정보
     @ManyToOne
-    @JoinColumn(name = "majorId")
+    @JoinColumn(name = "major_id")
     private Major major;
 
 
     //엔티티 생성
     public static Member createMember(SignupDto signupDto, Major major) {
         //예외 발생
-//        if(signupDto.getId() != null)
-//            throw new IllegalArgumentException("member의 id가 없어야 합니다.");
         if(!signupDto.getMajorName().equals(major.getMajorName()))
             throw new IllegalArgumentException("name이 잘못됐습니다.");
 

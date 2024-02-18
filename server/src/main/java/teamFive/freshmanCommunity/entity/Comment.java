@@ -1,10 +1,7 @@
 package teamFive.freshmanCommunity.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import teamFive.freshmanCommunity.dto.CommentRequestDto;
 
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString
 @Entity
 public class Comment {

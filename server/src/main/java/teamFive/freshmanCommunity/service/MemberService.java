@@ -38,19 +38,7 @@ public class MemberService {
         Member member = Member.createMember(signupDto, major);
         //멤버 엔티티를 DB에 저장
         memberRepository.save(member);
-//        Member signed = memberRepository.save(member);
-//        //DTO로 변환 --> 필요없어서 주석처리
-//        SignupDto.createMemberDto(signed);
     }
-
-    //중복 검사
-//    private void validateDuplicateMember(RegisterDto registerDto){ //실무에서는 한 번 더 최후의 방어(멀티스레드 상황 고려) -> 멤버의 네임을 유니크 제약조건으로 잡는 것을 권장
-//        //EXCEPTION
-//        List<Member> findMembers = memberRepository.findByEmail(registerDto.getEmail());
-//        if(!findMembers.isEmpty()) {
-//            throw new IllegalStateException("이미 존재하는 회원입니다.");
-//        }
-//    }
 
     private void validateDuplicateMember(SignupDto signupDto) {
         Long count = memberRepository.countByEmail(signupDto.getEmail());
@@ -85,19 +73,6 @@ public class MemberService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
         memberRepository.delete(member);
-//        SignupDto.createMemberDto(member);
-    }
-
-    //회원 전체 조회
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
-    }
-
-    //회원 단건 조회
-    public Member findOne(Long id) {
-        return memberRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException("Member ID를 찾을 수 없습니다.");
-        });
     }
 
 }

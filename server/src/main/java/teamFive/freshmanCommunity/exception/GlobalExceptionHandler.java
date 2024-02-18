@@ -38,6 +38,14 @@ public class GlobalExceptionHandler {
                 .body(e.getMessage());
     }
 
+    @ExceptionHandler(IllegalArticleIdException.class)
+    public ResponseEntity<String> BoardNotFoundExceptionHandler(IllegalArticleIdException e) {
+        log.error("{}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(e.getMessage());
+    }
+  
     @ExceptionHandler(CommentNotFoundException.class)
     public ResponseEntity<String> handleCommentNotFoundException(CommentNotFoundException e){
         log.error("{}",e.getMessage());

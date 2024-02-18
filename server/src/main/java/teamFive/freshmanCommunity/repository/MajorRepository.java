@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 public interface MajorRepository extends JpaRepository<Major, Long> {
-
-
-
     //이름으로 조회
     Major findByMajorName(String majorName);
 }

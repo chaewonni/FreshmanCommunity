@@ -1,20 +1,11 @@
 body {
-  /* background-color: lightgray; */
-  margin: 3% 10% 0 10%;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  box-sizing: border-box;
+  margin: 0 10%;
+  line-height: 1.3;
 }
 
 #header-top {
   display: flex;
-  /* width: 10vw; */
   /* background-color: lightcoral; */
   position: absolute;
   padding-left: 64vw;
@@ -66,42 +57,7 @@ main {
   margin-top: 5vh;
   /* background-color: lightyellow; */
 }
-main .card {
-  flex: 0 0 30%; /* 한 줄에 3개의 열로 나누기 위해 100% / 3 */
-  box-sizing: border-box;
-  margin-bottom: 8vh;
-  padding: 2vh 5vh 0 5vh;
-  background-color: #bddebd;
-  aspect-ratio: 1/1;
-  box-shadow: 0 5px 15px gray;
-}
-main .card .text {
-  display: flex;
-  align-items: center;
 
-  /* background-color: lightpink; */
-  height: 30vh;
-  font-size: 3vh;
-  line-height: 2.5rem;
-  font-weight: bolder;
-  text-align: center;
-
-  overflow-wrap: break-word;
-}
-
-main .card footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  /* background-color: lightskyblue; */
-  height: 4vh;
-}
-main .card footer .author {
-  align-self: center;
-  background-color: #87a68779;
-  padding: 0.7vh 1vw 0.7vh 1vw;
-  border-radius: 40px;
-}
 main .card footer .liked-number {
   display: flex;
   padding-top: 0.7vh;
@@ -137,6 +93,5 @@ body #button-container button {
 }
 
 body #button-container p {
-  /* background-color: lightcoral; */
   margin: 0;
 }
