@@ -15,7 +15,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "memberId")
+    @Column(name = "member_id")
     private Long id;
 
     @Column
@@ -32,7 +32,7 @@ public class Member {
 
     //학과 정보
     @ManyToOne
-    @JoinColumn(name = "majorId")
+    @JoinColumn(name = "major_id")
     private Major major;
 
 
