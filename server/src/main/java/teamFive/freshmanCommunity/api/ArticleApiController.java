@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teamFive.freshmanCommunity.dto.ArticleReadDto;
 import teamFive.freshmanCommunity.dto.ArticleCreateDto;
+import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.exception.ArticleNotFoundException;
 import teamFive.freshmanCommunity.exception.MajorConflictWithArticleException;
 import teamFive.freshmanCommunity.service.ArticleService;
@@ -50,4 +51,25 @@ public class ArticleApiController {
         ArticleReadDto createdDto = articleService.create(majorId, dto, request);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
+
+    // 3. 게시글 수정
+    @PatchMapping("/articles/{majorId}/{articleId}")
+    public ResponseEntity<ArticleReadDto> update(@PathVariable Long articleId,
+                                                 @RequestBody ArticleCreateDto dto,
+                                                 HttpServletRequest request) {
+        ArticleReadDto updatedDto = articleService.update(articleId, dto, request);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+    }
+
+    // 4. 게시글 삭제
+    @DeleteMapping("/articles/{majorId}/{articleId}")
+    public ResponseEntity<ArticleReadDto> delete(@PathVariable Long majorId,
+                                                 @PathVariable Long articleId){
+        // 서비스에 위임
+        ArticleReadDto deletedDto = articleService.delete(majorId, articleId);
+        // 결과 응답
+        return ResponseEntity.status(HttpStatus.OK).body(deletedDto);
+    }
+
+
 }

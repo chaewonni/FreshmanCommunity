@@ -75,6 +75,20 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());
     }
+    @ExceptionHandler(IdConflictWithDtoException.class)
+    public ResponseEntity<String> handleIdConflictWithDtoException(IdConflictWithDtoException e){
+        log.error("{}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
+    @ExceptionHandler(ArticleUpdateAccessDeniedException.class)
+    public ResponseEntity<String> handleArticleUpdateAccessDeniedException(ArticleUpdateAccessDeniedException e){
+        log.error("{}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
 
     @ExceptionHandler(NotSameMemberException.class)
     public ResponseEntity<String> handleNotSameMemberException(NotSameMemberException e){
