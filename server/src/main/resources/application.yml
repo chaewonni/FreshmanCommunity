@@ -1,12 +1,16 @@
 spring:
   # H2 Database ??
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/freshman   # H2 DB ?? ?? (In-Memory Mode)
-    username: sa
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://localhost/~/freshman   # H2 DB ?? ?? (In-Memory Mode)
+#    username: sa
     #url: 'jdbc:h2:~/test'    # H2 DB ?? ?? (Embedded Mode)
   #    username: username        # H2 DB ?? ID (??? ??)
   #    password: password        # H2 DB ?? PW (??? ??)
+    url: jdbc:mysql://freshmancommunity.cjieyc0k4yq1.ap-northeast-2.rds.amazonaws.com:3306/freshmandb
+    username: admin
+    password: freshman1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     active: dev
 
