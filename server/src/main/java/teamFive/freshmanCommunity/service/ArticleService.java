@@ -64,9 +64,7 @@ public class ArticleService {
         return dtos;
     }
 
-    public ArticleReadDto oneArticle(Long majorId, Long articleId) {
-        // 0.5. 게시판 존재 여부 확인
-        Major major = majorRepository.findById(majorId).orElseThrow(() -> new BoardNotFoundException());
+    public ArticleReadDto oneArticle(Long articleId) {
         // 1. 게시글 조회
         Article article = articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException());
         // 2. 엔티티 -> DTO 반환

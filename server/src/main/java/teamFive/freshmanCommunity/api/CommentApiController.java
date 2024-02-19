@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import teamFive.freshmanCommunity.dto.CommentDto;
+import teamFive.freshmanCommunity.dto.CommentRequestDto;
+import teamFive.freshmanCommunity.dto.CommentResponseDto;
 import teamFive.freshmanCommunity.entity.Member;
+import teamFive.freshmanCommunity.exception.MemberNotFoundException;
 import teamFive.freshmanCommunity.service.CommentService;
 
 import java.util.List;
@@ -18,30 +20,36 @@ public class CommentApiController {
 
     //전체 댓글 조회
     @GetMapping("/article/{articleId}/comment")
-    public ResponseEntity<List<CommentDto>> comments(@PathVariable Long articleId){
-        List<CommentDto> dtos = commentService.comments(articleId);
+    public ResponseEntity<List<CommentResponseDto>> comments(@PathVariable Long articleId){
+        List<CommentResponseDto> dtos = commentService.comments(articleId);
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
-        //null이어도 오류 아님.
     }
 
     @PostMapping("/article/{articleId}/comment")
-    public ResponseEntity<CommentDto> create(@PathVariable Long articleId, @RequestBody CommentDto dto, HttpSession session){
+    public ResponseEntity<CommentResponseDto> create(@PathVariable Long articleId, @RequestBody CommentRequestDto dto, HttpSession session){
         //세션에서 member 불러오기
         Member member = (Member) session.getAttribute("member");
+        if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
 
-        CommentDto createDto = commentService.create(articleId, dto, member);
+        CommentResponseDto createDto = commentService.create(articleId, dto, member);
         return ResponseEntity.status(HttpStatus.OK).body(createDto);
     }
 
     @PatchMapping("/comment/{commentId}")
-    public ResponseEntity<CommentDto> update(@PathVariable Long commentId, @RequestBody CommentDto dto){
-        CommentDto target = commentService.update(commentId, dto);
+    public ResponseEntity<CommentResponseDto> update(@PathVariable Long commentId, @RequestBody CommentRequestDto dto, HttpSession session){
+        Member member = (Member) session.getAttribute("member");
+        if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
+
+        CommentResponseDto target = commentService.update(commentId, dto, member);
         return ResponseEntity.status(HttpStatus.OK).body(target);
     }
 
     @DeleteMapping("/comment/{commentId}")
-    public ResponseEntity<CommentDto> delete(@PathVariable Long commentId){
-        CommentDto deleteDto = commentService.delete(commentId);
-        return ResponseEntity.status(HttpStatus.OK).body(deleteDto);
+    public ResponseEntity<String> delete(@PathVariable Long commentId, HttpSession session){
+        Member member = (Member) session.getAttribute("member");
+        if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
+
+        commentService.delete(commentId, member);
+        return ResponseEntity.status(HttpStatus.OK).body("댓글 삭제 완료");
     }
 }

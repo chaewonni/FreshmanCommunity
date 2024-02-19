@@ -36,14 +36,9 @@ public class ArticleApiController {
 
     //1-2. 게시글 하나 조회
     @GetMapping("/articles/{majorId}/{articleId}")
-    public ResponseEntity<ArticleReadDto> showOne(@PathVariable Long majorId, @PathVariable Long articleId) {
+    public ResponseEntity<ArticleReadDto> showOne(@PathVariable Long articleId) {
         // 서비스에 위임
-        ArticleReadDto dto = articleService.oneArticle(majorId, articleId);
-        // 예외 처리
-        // 1. 불러온 게시글의 전공 id와 조회하는 전공의 id가 다를
-        if (!(dto.getBoardMajor().getId().equals(majorId))) {
-            throw new MajorConflictWithArticleException();
-        }
+        ArticleReadDto dto = articleService.oneArticle(articleId);
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(dto);
     }

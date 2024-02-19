@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import teamFive.freshmanCommunity.dto.ArticleCreateDto;
 import teamFive.freshmanCommunity.exception.IdConflictWithDtoException;
 
@@ -20,20 +22,27 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String title;
+
     @Column
     private String content;
+
     @Column
     private int bookmarkCount;
+
     @CreationTimestamp
     @Column
     private LocalDateTime createDate;
+
     @ManyToOne
-    @JoinColumn(name="memberId")
+    @JoinColumn(name="member_id")
     private Member member;
+
     @ManyToOne
-    @JoinColumn(name="majorId")
+    @JoinColumn(name="major_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Major major;
 
     public static Article create(ArticleCreateDto dto, Major major, Member member) {
