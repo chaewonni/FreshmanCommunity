@@ -82,4 +82,11 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .body(e.getMessage());
     }
+    @ExceptionHandler(ArticleUpdateAccessDeniedException.class)
+    public ResponseEntity<String> handleArticleUpdateAccessDeniedException(ArticleUpdateAccessDeniedException e){
+        log.error("{}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
 }

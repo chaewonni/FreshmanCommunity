@@ -76,13 +76,13 @@ public class ArticleService {
     }
 
     @Transactional
-    public ArticleReadDto update(Long majorId, Long articleId, ArticleCreateDto dto) {
-        // 0.5. 게시판 존재 여부 확인
-        Major major = majorRepository.findById(majorId).orElseThrow(() -> new BoardNotFoundException());
-        // 1. 게시글 조회 및 예외 발생
+    public ArticleReadDto update(Long articleId, ArticleCreateDto dto, HttpServletRequest request) {
+        // 1. 게시글, 멤버 조회 및 예외 발생
         Article target = articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException());
-        if (!(target.getMajor().getId().equals(majorId)))
-            throw new MajorConflictWithArticleException();
+        HttpSession session = request.getSession();
+        Member member = (Member) session.getAttribute("member");
+        if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
+        if(!(target.getMember().equals(member))) throw new ArticleUpdateAccessDeniedException();
         // 2. 게시글 수정
         target.patch(dto);
         // 3. DB로 갱신

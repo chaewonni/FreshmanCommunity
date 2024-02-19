@@ -59,10 +59,10 @@ public class ArticleApiController {
 
     // 3. 게시글 수정
     @PatchMapping("/articles/{majorId}/{articleId}")
-    public ResponseEntity<ArticleReadDto> update(@PathVariable Long majorId,
-                                                 @PathVariable Long articleId,
-                                                 @RequestBody ArticleCreateDto dto) {
-        ArticleReadDto updatedDto = articleService.update(majorId, articleId, dto);
+    public ResponseEntity<ArticleReadDto> update(@PathVariable Long articleId,
+                                                 @RequestBody ArticleCreateDto dto,
+                                                 HttpServletRequest request) {
+        ArticleReadDto updatedDto = articleService.update(articleId, dto, request);
         return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
     }
 
