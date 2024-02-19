@@ -10,10 +10,10 @@ export const Card = ({ title, member }) => {
       <S.Title>{title}</S.Title>
       <S.CardBottom>
         <S.Author>{majorName}</S.Author>
-        <div className="liked-number">
+        <S.LikedNumber>
           <span className="material-symbols-outlined"> favorite </span>
           <div id="liked-number-count">10</div>
-        </div>
+        </S.LikedNumber>
       </S.CardBottom>
     </S.Card>
   );
