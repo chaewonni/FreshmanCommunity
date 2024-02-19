@@ -3,6 +3,8 @@ package teamFive.freshmanCommunity.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import teamFive.freshmanCommunity.dto.CommentDto;
 
 import java.time.LocalDateTime;
@@ -34,6 +36,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name="article_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Article article;
 
     public static Comment createNewComment(CommentDto dto, Article article, Member member){
