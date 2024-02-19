@@ -12,15 +12,25 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 0 20px;
-  background-color: #bddebd;
   box-shadow: 0 5px 15px gray;
   word-break: auto-phrase;
+  &:nth-child(3n + 1) {
+    background-color: #eef0e5;
+  }
+  &:nth-child(3n + 2) {
+    background-color: #bddebd;
+  }
+  &:nth-child(3n + 3) {
+    background-color: #40b375;
+  }
 `;
 
 export const CardBottom = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 `;
 
 export const Title = styled.div`
@@ -38,8 +48,13 @@ export const Title = styled.div`
 `;
 
 export const Author = styled.h2`
-  background-color: #87a68779;
-  padding: 2px 10px;
+  background-color: #ffffff;
+  padding: 5px 10px;
   border-radius: 40px;
   font-size: 14px;
+`;
+
+export const LikedNumber = styled.div`
+  display: flex;
+  font-weight: bold;
 `;

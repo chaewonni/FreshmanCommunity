@@ -4,33 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Comment;
-import teamFive.freshmanCommunity.entity.LikeComment;
-import teamFive.freshmanCommunity.entity.Member;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString
-public class CommentDto {
+public class CommentResponseDto {   //댓글 요청시 돌려줄 값
     private Long id;
     private String content;
-    private LocalDateTime createDate;
+    private String createDate;
     private int likesCount;
-    private Long memberId;  //member FK
+    private LoginResponseDto member;
     private Long articleId;    //article FK
 
-    public static CommentDto createCommentDto(Comment comment){
-        return new CommentDto(
+    public static CommentResponseDto createCommentDto(Comment comment){
+        return new CommentResponseDto(
                 comment.getId(),
                 comment.getContent(),
                 comment.getCreateDate(),
                 comment.getLikesCount(),
-                comment.getMember().getId(),
+                LoginResponseDto.createLoginDto(comment.getMember()),
                 comment.getArticle().getId());
     }
 }
