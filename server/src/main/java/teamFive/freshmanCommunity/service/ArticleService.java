@@ -12,6 +12,8 @@ import teamFive.freshmanCommunity.dto.ArticleReadDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
+import teamFive.freshmanCommunity.exception.ArticleNotFoundException;
+import teamFive.freshmanCommunity.exception.BoardNotFoundByIdException;
 import teamFive.freshmanCommunity.exception.BoardNotFoundException;
 import teamFive.freshmanCommunity.exception.MemberNotFoundException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
@@ -20,6 +22,7 @@ import teamFive.freshmanCommunity.repository.MemberRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 @Service
 @AllArgsConstructor
@@ -63,5 +66,14 @@ public class ArticleService {
         }
         // 3. 결과 반환
         return dtos;
+    }
+
+    public ArticleReadDto oneArticle(Long articleId) {
+        // 1. 게시글 조회
+        Article article = articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException());
+        // 2. 엔티티 -> DTO 반환
+        ArticleReadDto dto = ArticleDto.createArticleReadDto(article);
+        // 3. 결과 반환
+        return dto;
     }
 }
