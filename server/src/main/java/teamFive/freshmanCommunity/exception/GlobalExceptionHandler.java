@@ -61,4 +61,12 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(NotSameMemberException.class)
+    public ResponseEntity<String> handleNotSameMemberException(NotSameMemberException e){
+        log.error("{}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(e.getMessage());
+    }
 }

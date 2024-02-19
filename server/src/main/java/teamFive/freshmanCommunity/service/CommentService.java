@@ -3,13 +3,14 @@ package teamFive.freshmanCommunity.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import teamFive.freshmanCommunity.dto.CommentDto;
+import teamFive.freshmanCommunity.dto.CommentRequestDto;
+import teamFive.freshmanCommunity.dto.CommentResponseDto;
 import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Comment;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.BoardNotFoundByIdException;
-import teamFive.freshmanCommunity.exception.BoardNotFoundException;
 import teamFive.freshmanCommunity.exception.CommentNotFoundException;
+import teamFive.freshmanCommunity.exception.NotSameMemberException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
 import teamFive.freshmanCommunity.repository.CommentRepository;
 
@@ -23,43 +24,48 @@ public class CommentService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public List<CommentDto> comments(Long articleId) {
+    public List<CommentResponseDto> comments(Long articleId) {
         //articleId가 없을 경우 에러
         if(articleRepository.findById(articleId).isEmpty())
             throw new BoardNotFoundByIdException();
-        //dto로 변환해서 반환
-        return commentRepository.findByArticleId(articleId)
+        //dto로 변환해서 반환(10개 이상시 맨 위로 올라가도록)
+        return commentRepository.findByArticleIdOrderByLikes(articleId)
                 .stream()
-                .map(comment -> CommentDto.createCommentDto(comment))
+                .map(comment -> CommentResponseDto.createCommentDto(comment))
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public CommentDto create(Long articleId, CommentDto dto, Member member) {
-        //api로 content만
+    public CommentResponseDto create(Long articleId, CommentRequestDto dto, Member member) {
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(()-> new BoardNotFoundByIdException());
 
-        Comment created = Comment.createNewComment(dto, article, member);  //likesCount는 처음생성하면 0개니까 자동생성되도록
+        Comment created = Comment.createNewComment(dto, article, member);
         Comment save = commentRepository.save(created);
-        return CommentDto.createCommentDto(save);
+        return CommentResponseDto.createCommentDto(save);
     }
 
     @Transactional
-    public CommentDto update(Long commentId, CommentDto dto) {
+    public CommentResponseDto update(Long commentId, CommentRequestDto dto, Member member) {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()->new CommentNotFoundException());
-        //수정사항 content 밖에 없음
+        //지우려는 댓글이 로그인한 유저가 아닌 경우 수정 불가
+        if(target.getMember() != member)
+            throw new NotSameMemberException();
+
         target.patch(dto);
         Comment save = commentRepository.save(target);
-        return CommentDto.createCommentDto(save);
+        return CommentResponseDto.createCommentDto(save);
     }
 
     @Transactional
-    public CommentDto delete(Long commentId) {
+    public void delete(Long commentId, Member member) {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()-> new CommentNotFoundException());
+        //지우려는 댓글이 로그인한 유저가 아닌 경우 삭제 불가
+        if(target.getMember() != member)
+            throw new NotSameMemberException();
+
         commentRepository.delete(target);
-        return CommentDto.createCommentDto(target);
     }
 }
