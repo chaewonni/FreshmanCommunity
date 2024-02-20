@@ -23,7 +23,7 @@ spring:
   # JPA ??
   jpa:
     hibernate:
-      ddl-auto: create        # DB ??? ?? (none, create, create-drop, update, validate)
+      ddl-auto: update        # DB ??? ?? (none, create, create-drop, update, validate)
     properties:
       hibernate:
         format_sql: true      # ?? ?? ?? (??)
