@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -24,7 +25,11 @@ public class Bookmark {
     private boolean status;
 
     @Column
-    private LocalDateTime createDate;
+    private String createDate;
+    @PrePersist //해당 엔티티를 저장하기 이전에 실행
+    public void datePrePersist(){
+        this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -40,7 +45,7 @@ public class Bookmark {
         return new Bookmark(
                 null,
                 true,
-                LocalDateTime.now(),
+                null,
                 member,
                 article
         );

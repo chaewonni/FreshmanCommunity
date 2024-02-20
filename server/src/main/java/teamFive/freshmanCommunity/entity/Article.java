@@ -10,6 +10,7 @@ import teamFive.freshmanCommunity.dto.ArticleCreateDto;
 import teamFive.freshmanCommunity.exception.IdConflictWithDtoException;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,9 +33,12 @@ public class Article {
     @Column
     private int bookmarkCount;
 
-    @CreationTimestamp
     @Column
-    private LocalDateTime createDate;
+    private String createDate;
+    @PrePersist //해당 엔티티를 저장하기 이전에 실행
+    public void datePrePersist(){
+        this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 
     @ManyToOne
     @JoinColumn(name="member_id")
