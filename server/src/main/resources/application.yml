@@ -1,32 +1,56 @@
+#spring:
+#  # H2 Database ??
+#  datasource:
+##    driver-class-name: org.h2.Driver
+##    url: jdbc:h2:tcp://localhost/~/freshman   # H2 DB ?? ?? (In-Memory Mode)
+##    username: sa
+#    #url: 'jdbc:h2:~/test'    # H2 DB ?? ?? (Embedded Mode)
+#  #    username: username        # H2 DB ?? ID (??? ??)
+#  #    password: password        # H2 DB ?? PW (??? ??)
+#    url: jdbc:mysql://localhost:3306/freshmandb
+#    username: freshman
+#    password: freshman
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  profiles:
+#    active: dev
+#
+#  # H2 Console ??
+#  h2:
+#    console: # H2 DB? ??? ??? ? ?? ??
+#      enabled: true           # H2 Console ?? ??
+#      path: /h2-console       # H2 Console ?? ??
+#
+#  # JPA ??
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: update        # DB ??? ?? (none, create, create-drop, update, validate)
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+#        format_sql: true      # ?? ?? ?? (??)
+#        show_sql: true        # ?? ??
+
+# database 연동 설정
 spring:
-  # H2 Database ??
   datasource:
-#    driver-class-name: org.h2.Driver
-#    url: jdbc:h2:tcp://localhost/~/freshman   # H2 DB ?? ?? (In-Memory Mode)
-#    username: sa
-    #url: 'jdbc:h2:~/test'    # H2 DB ?? ?? (Embedded Mode)
-  #    username: username        # H2 DB ?? ID (??? ??)
-  #    password: password        # H2 DB ?? PW (??? ??)
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    각자 PC에 만들어놓은 Database이름을 써야 합니다.
     url: jdbc:mysql://freshmancommunity.cjieyc0k4yq1.ap-northeast-2.rds.amazonaws.com:3306/freshmandb
+    #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
     username: admin
     password: freshman1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  profiles:
-    active: dev
+  thymeleaf:
+    cache: false
 
-  # H2 Console ??
-  h2:
-    console: # H2 DB? ??? ??? ? ?? ??
-      enabled: true           # H2 Console ?? ??
-      path: /h2-console       # H2 Console ?? ??
 
-  # JPA ??
+  # spring data jpa 설정
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database: mysql
+    show-sql: true
     hibernate:
-      ddl-auto: create        # DB ??? ?? (none, create, create-drop, update, validate)
+      ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true      # ?? ?? ?? (??)
-        show_sql: true        # ?? ?? ??
+        show_sql: true
+        format_sql: true
