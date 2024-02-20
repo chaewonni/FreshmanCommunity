@@ -50,7 +50,7 @@ public class CommentService {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()->new CommentNotFoundException());
         //지우려는 댓글이 로그인한 유저가 아닌 경우 수정 불가
-        if(target.getMember() != member)
+        if(!target.getMember().getId().equals(member.getId()))
             throw new NotSameMemberException();
 
         target.patch(dto);
@@ -63,7 +63,7 @@ public class CommentService {
         Comment target = commentRepository.findById(commentId)
                 .orElseThrow(()-> new CommentNotFoundException());
         //지우려는 댓글이 로그인한 유저가 아닌 경우 삭제 불가
-        if(target.getMember() != member)
+        if(!target.getMember().getId().equals(member.getId()))
             throw new NotSameMemberException();
 
         commentRepository.delete(target);

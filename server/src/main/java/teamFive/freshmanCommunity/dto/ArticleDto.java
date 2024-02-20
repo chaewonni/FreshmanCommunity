@@ -8,6 +8,7 @@ import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,13 +35,25 @@ public class ArticleDto {
     }
 
     public static ArticleReadDto createArticleReadDto(Article n) {
+        MemberInfoDto memberInfo = null;
+
+        if(n.getMember() != null) {
+            LoginResponseDto dto = LoginResponseDto.createLoginDto(n.getMember());
+            memberInfo = new MemberInfoDto(
+                    dto.getId(),
+                    dto.getMemberName(),
+                    dto.getStudentId(),
+                    dto.getMajor()
+            );
+
+        }
         return new ArticleReadDto(
                 n.getId(),
                 n.getTitle(),
                 n.getContent(),
                 n.getBookmarkCount(),
                 n.getCreateDate(),
-                LoginResponseDto.createLoginDto(n.getMember()),
+                memberInfo,
                 n.getMajor()
         );
     }
