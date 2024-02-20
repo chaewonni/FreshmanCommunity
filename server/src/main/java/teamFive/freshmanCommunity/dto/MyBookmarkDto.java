@@ -15,7 +15,7 @@ public class MyBookmarkDto {
     private Long id;
     private String title;
     private String content;
-    private LocalDateTime createDate;
+    private String createDate;
     private LoginResponseDto member;
     private Major major;
 
