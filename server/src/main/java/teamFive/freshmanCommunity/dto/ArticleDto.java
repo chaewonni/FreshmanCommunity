@@ -18,7 +18,7 @@ public class ArticleDto {
     private String title;
     private String content;
     private int bookmarkCount;
-    private LocalDateTime createDate;
+    private String createDate;
     private Member member;
     private Major major;
 
@@ -45,8 +45,8 @@ public class ArticleDto {
                     dto.getStudentId(),
                     dto.getMajor()
             );
-
         }
+
         return new ArticleReadDto(
                 n.getId(),
                 n.getTitle(),
