@@ -1,8 +1,6 @@
 package teamFive.freshmanCommunity.api;
 
-import teamFive.freshmanCommunity.dto.LoginDto;
-import teamFive.freshmanCommunity.dto.LoginResponseDto;
-import teamFive.freshmanCommunity.dto.SignupDto;
+import teamFive.freshmanCommunity.dto.*;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teamFive.freshmanCommunity.dto.LoginDto;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -65,5 +65,13 @@ public class MemberApiController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
+    }
+
+    //나의 북마크
+    @GetMapping("/user/bookmark")
+    public ResponseEntity<List<MyBookmarkDto>> myBookmark(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        List<MyBookmarkDto> bookmarks = memberService.myBookmark(session);
+        return ResponseEntity.status(HttpStatus.OK).body(bookmarks);
     }
 }

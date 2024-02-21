@@ -3,8 +3,10 @@ package teamFive.freshmanCommunity.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.annotation.CreatedDate;
+
 import teamFive.freshmanCommunity.dto.CommentRequestDto;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,6 +42,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name="article_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Article article;
 
     public static Comment createNewComment(CommentRequestDto dto, Article article, Member member){

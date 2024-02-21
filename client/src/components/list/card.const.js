@@ -8,6 +8,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 1,
       memberName: '승연',
+      studentId: '21',
       email: 'abc',
       password: '123123123',
       major: {
@@ -24,6 +25,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 2,
       memberName: '지민',
+      studentId: '21',
       email: 'def',
       password: '456456456',
       major: {
@@ -40,6 +42,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 3,
       memberName: '현우',
+      studentId: '21',
       email: 'ghi',
       password: '789789789',
       major: {
@@ -56,6 +59,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 4,
       memberName: '은지',
+      studentId: '23',
       email: 'jkl',
       password: '1010101010',
       major: {
@@ -73,6 +77,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 5,
       memberName: '다현',
+      studentId: '21',
       email: 'mno',
       password: '1111111111',
       major: {
@@ -89,6 +94,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 6,
       memberName: '태현',
+      studentId: '24',
       email: 'pqr',
       password: '1212121212',
       major: {
@@ -105,6 +111,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -121,6 +128,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -137,6 +145,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -153,6 +162,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -169,6 +179,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -185,6 +196,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -201,6 +213,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '23',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -217,6 +230,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '22',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -233,6 +247,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '21',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -249,6 +264,7 @@ export const MOCK_CARD_LIST = [
     member: {
       id: 7,
       memberName: '보민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -264,7 +280,8 @@ export const MOCK_CARD_LIST = [
     createDate: '2024-02-07',
     member: {
       id: 7,
-      memberName: '보민',
+      memberName: '승연',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {
@@ -276,11 +293,12 @@ export const MOCK_CARD_LIST = [
   {
     id: 18,
     title: '공대 축구 동아리 축구 좋아하는 공대생들 모여라!축구 좋아하는 공대생들 모여라!',
-    content: '축구 좋아하는 공대생들 모여라!',
+    content: '고고!',
     createDate: '2024-02-07',
     member: {
       id: 7,
-      memberName: '보민',
+      memberName: '지민',
+      studentId: '24',
       email: 'stu',
       password: '1313131313',
       major: {

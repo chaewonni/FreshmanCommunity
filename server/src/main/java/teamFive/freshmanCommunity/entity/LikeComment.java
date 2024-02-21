@@ -25,6 +25,7 @@ public class LikeComment {
 
     @ManyToOne
     @JoinColumn(name = "comment_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Comment comment;
 
     @Column(nullable = false)
