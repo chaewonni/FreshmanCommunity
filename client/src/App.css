@@ -23,7 +23,6 @@ body {
 }
 
 #header-mid {
-  /* background-color: lightblue; */
   width: 100%;
   display: flex;
 }
@@ -50,8 +49,8 @@ body {
 
 header #header-mid .ewha-logo img {
   margin: 4vh 0 0 25vh;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
 }
 
 /* 과 선택 옵션 */
@@ -275,4 +274,27 @@ body #button-container p {
   color: white;
 
   font-size: 14px;
+}
+
+/* 기존 카드 모달창 */
+#card-title {
+  height: fit-content;
+}
+
+#view-card-createDate {
+  /* background-color: lightseagreen; */
+}
+#view-card-content {
+  margin-left: 30px;
+  /* background-color: lightblue; */
+  height: 100px;
+
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#view-card-content-box {
+  margin: none;
+  /* background-color: lightcoral; */
+  height: 180px;
 }
