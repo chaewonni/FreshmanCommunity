@@ -25,7 +25,7 @@ public class CommentResponseDto {   //댓글 요청시 돌려줄 값
         MemberInfoDto memberInfo = null;
 
         if(comment.getMember() != null) {
-            LoginResponseDto dto = LoginResponseDto.createLoginDto(comment.getMember());
+            MemberInfoDto dto = MemberInfoDto.createMemberDto(comment.getMember());
             memberInfo = new MemberInfoDto(
                     dto.getId(),
                     dto.getMemberName(),

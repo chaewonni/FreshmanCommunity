@@ -38,7 +38,7 @@ public class ArticleDto {
         MemberInfoDto memberInfo = null;
 
         if(n.getMember() != null) {
-            LoginResponseDto dto = LoginResponseDto.createLoginDto(n.getMember());
+            MemberInfoDto dto = MemberInfoDto.createMemberDto(n.getMember());
             memberInfo = new MemberInfoDto(
                     dto.getId(),
                     dto.getMemberName(),
