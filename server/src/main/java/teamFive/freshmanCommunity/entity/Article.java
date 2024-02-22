@@ -42,6 +42,7 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name="member_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Member member;
 
     @ManyToOne
