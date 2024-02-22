@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { RiAddBoxLine } from 'react-icons/ri';
 import NewCardModal from '../modal/Modal';
 import EwhaLogo from './Logo';
 import { Card } from '../list/Card';
@@ -39,11 +39,9 @@ export const ViewCard = () => {
 
       <div>
         <NewCardModal isOpen={isModalOpen} closeModal={closeModal}>
-          <Box>
-            {/* Use selectedCard data to display specific card content */}
+          <Box id="view-card-top">
             {selectedCard && (
               <>
-                {/* Display selected card content in the modal */}
                 <header>
                   <div className="ewha-logo">
                     <EwhaLogo />
@@ -64,10 +62,84 @@ export const ViewCard = () => {
                   <div id="view-card-content">{selectedCard.content}</div>
                 </Box>
 
+                {/* 댓글  view */}
                 <div className="comment-container">
-                  <div className="new-card-info">댓글</div>
-                  <div className="new-card-info">댓글</div>
-                  <div className="new-card-info">댓글</div>
+                  <div className="comment">
+                    <header>
+                      <div className="ewha-logo">
+                        <EwhaLogo />
+                      </div>
+
+                      {/* 댓글 작성자 학과,학번, 작성 날짜 */}
+                      <div className="view-card-info">
+                        <div id="view-card-majorStudentId">
+                          {selectedCard.member.major.majorName} {selectedCard.member.studentId}학번
+                        </div>
+
+                        <div id="view-card-createDate">{selectedCard.createDate}</div>
+                      </div>
+
+                      <div id="comment-like-count">♡21</div>
+                    </header>
+
+                    {/* 댓글 내용  */}
+                    <div className="comment-content">그렇게 말고 종합과학관을 통해서</div>
+                  </div>
+
+                  <div className="comment">
+                    <header>
+                      <div className="ewha-logo">
+                        <EwhaLogo />
+                      </div>
+
+                      {/* 댓글 작성자 학과,학번, 작성 날짜 */}
+                      <div className="view-card-info">
+                        <div id="view-card-majorStudentId">
+                          {selectedCard.member.major.majorName} {selectedCard.member.studentId}학번
+                        </div>
+
+                        <div id="view-card-createDate">{selectedCard.createDate}</div>
+                      </div>
+
+                      <div id="comment-like-count">♡21</div>
+                    </header>
+
+                    {/* 댓글 내용  */}
+                    <div className="comment-content">그렇게 말고 종합과학관을 통해서</div>
+                  </div>
+
+                  <div className="comment">
+                    <header>
+                      <div className="ewha-logo">
+                        <EwhaLogo />
+                      </div>
+
+                      {/* 댓글 작성자 학과,학번, 작성 날짜 */}
+                      <div className="view-card-info">
+                        <div id="view-card-majorStudentId">
+                          {selectedCard.member.major.majorName} {selectedCard.member.studentId}학번
+                        </div>
+
+                        <div id="view-card-createDate">{selectedCard.createDate}</div>
+                      </div>
+
+                      <div id="comment-like-count">♡21</div>
+                    </header>
+
+                    {/* 댓글 내용  */}
+                    <div className="comment-content">그렇게 말고 종합과학관을 통해서</div>
+                  </div>
+
+                  {/* 새 댓글 작성 칸  */}
+                  <div className="new-comment-container">
+                    <input id="new-comment" type="text" placeholder="댓글을 입력해주세요." maxLength={100} />
+
+                    {/* 댓글 작성 완료  */}
+                    <RiAddBoxLine
+                      style={{ color: 'white', fontSize: '40px' }}
+                      // onClick={} 댓글 작성 완료하고 + 버튼 누르면 댓글 내용 전송되는 부분, 추후 추가
+                    />
+                  </div>
                 </div>
               </>
             )}

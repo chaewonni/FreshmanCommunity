@@ -277,6 +277,10 @@ body #button-container p {
 }
 
 /* 기존 카드 모달창 */
+#view-card-top {
+  height: 320px;
+}
+
 #card-title {
   height: fit-content;
 }
@@ -296,5 +300,78 @@ body #button-container p {
 #view-card-content-box {
   margin: none;
   /* background-color: lightcoral; */
-  height: 180px;
+  line-break: auto;
+  height: 220px;
+}
+
+/* 댓글  */
+
+.comment-container .comment {
+  background-color: #fff;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.comment header {
+  padding-top: 4px;
+  display: flex;
+  flex-flow: row;
+}
+
+/* 이화 로고  (전체) */
+.ewha-logo {
+  /* background-color: #000000; */
+  padding-right: 0;
+  width: 60px;
+  height: 60px;
+}
+
+/* 댓글 작성자 학과,학번, 작성 날짜 */
+.comment #view-card-majorStudentId {
+  margin-top: 4px;
+  color: #00462a;
+  font-weight: 800;
+  font-size: 16px;
+}
+.comment #view-card-createDate {
+  margin-top: 3px;
+  color: #696969;
+  font-weight: 540;
+  font-size: 12px;
+}
+
+/* 댓글 좋아요 개수  */
+#comment-like-count {
+  /* background-color: #000000; */
+  position: absolute;
+  right: 4vw;
+  font-weight: 800;
+}
+
+/* 댓글 내용  */
+.comment-content {
+  /* background-color: lightcyan; */
+  margin-top: 0.2vh;
+  margin-left: 1.5vw;
+  width: 90%;
+  padding-bottom: 5px;
+}
+
+/* 새 댓글 작성  */
+
+.new-comment-container {
+  margin-top: 15px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+#new-comment {
+  background-color: white;
+  width: 100%;
+  height: 30px;
+
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
 }
