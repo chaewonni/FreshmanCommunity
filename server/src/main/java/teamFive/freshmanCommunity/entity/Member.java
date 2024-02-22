@@ -1,5 +1,7 @@
 package teamFive.freshmanCommunity.entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import teamFive.freshmanCommunity.dto.SignupDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,6 +35,7 @@ public class Member {
     //학과 정보
     @ManyToOne
     @JoinColumn(name = "major_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Major major;
 
 
