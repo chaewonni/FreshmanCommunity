@@ -1,0 +1,263 @@
+.signup-container {
+  /* background-color: lightblue; */
+  width: 20%;
+  position: absolute;
+  top: 10%;
+  right: 15%;
+}
+
+/* 뒤로 가기 버튼  */
+.signup-container header {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.signup-container header .back-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  order: -1;
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+/* 회원가입 하기  */
+.signup-container header h1 {
+  font-size: 40px;
+  margin-left: 15%;
+  margin-top: 0;
+  margin-bottom: 1%;
+}
+
+/* ewha where change begins  */
+.signup-container #top-text {
+  /* background-color: lightcyan; */
+  margin-bottom: 15%;
+}
+
+.signup-container #top-text h3 {
+  font-size: 22px;
+  color: #056c43;
+  font-weight: normal;
+  margin-top: 1%;
+}
+#top-text h3 span {
+  color: #475467;
+}
+
+/* 입력 창  */
+.signup-container .input {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  width: 100%;
+}
+
+/* 이름 */
+.name-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+.name-input .errorMessageWrap span {
+  color: red;
+  font-size: 0.7rem;
+}
+.name-input span {
+  font-size: 1rem;
+
+  margin-bottom: 0.3em;
+  margin-left: 0.3em;
+}
+.name-input input {
+  height: 4.5vh;
+  border: 1px solid #333d42;
+  padding: 1rem 0 1rem 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.name-input input:focus {
+  outline-color: #056c43;
+  outline-width: 1.5px;
+}
+
+/* 학번  */
+.studentId-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+.studentId-input .errorMessageWrap span {
+  color: red;
+  font-size: 0.7rem;
+}
+.studentId-input span {
+  font-size: 1rem;
+
+  margin-bottom: 0.3em;
+  margin-left: 0.3em;
+}
+.studentId-input input {
+  height: 4.5vh;
+  border: 1px solid #333d42;
+  padding: 1rem 0 1rem 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.studentId-input input:focus {
+  outline-color: #056c43;
+  outline-width: 1.5px;
+}
+
+/* 학과 */
+.majorName-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+.majorName-input .errorMessageWrap span {
+  color: red;
+  font-size: 0.7rem;
+}
+.majorName-input span {
+  font-size: 1rem;
+
+  margin-bottom: 0.3em;
+  margin-left: 0.3em;
+}
+.majorName-input input {
+  height: 4.5vh;
+  border: 1px solid #333d42;
+  padding: 1rem 0 1rem 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.majorName-input input:focus {
+  outline-color: #056c43;
+  outline-width: 1.5px;
+}
+
+/* 이메일 */
+
+.email-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+.email-input .errorMessageWrap span {
+  color: red;
+  font-size: 0.7rem;
+}
+.email-input span {
+  font-size: 1rem;
+
+  margin-bottom: 0.3em;
+  margin-left: 0.3em;
+}
+.email-input input {
+  height: 4.5vh;
+  border: 1px solid #333d42;
+  padding: 1rem 0 1rem 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.email-input input:focus {
+  outline-color: #056c43;
+  outline-width: 1.5px;
+}
+
+/* 비밀번호  */
+.password-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+.password-input .errorMessageWrap span {
+  color: red;
+  font-size: 0.7rem;
+}
+.password-input span {
+  font-size: 1rem;
+  margin-bottom: 0.3em;
+  margin-left: 0.3em;
+}
+.password-input input {
+  height: 4.5vh;
+  border: 1px solid #333d42;
+  padding: 1rem 0 1rem 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.password-input input:focus {
+  outline-color: #056c43;
+  outline-width: 1.5px;
+}
+
+.signup-container .button {
+  /* background-color: lightsteelblue; */
+}
+/* 로그인 버튼  */
+.signup-container #login-button {
+  width: 100%;
+  height: 44px;
+
+  padding: 0;
+  margin-top: 3%;
+
+  background-color: #056c43;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* 회원가입 */
+.signup-container .button #join {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 5%;
+
+  font-size: 12px;
+}
+
+#join span {
+  margin-right: 2px;
+}
+#join #register-button {
+  background: none;
+  border: none;
+
+  color: #00462a;
+  font-weight: bold;
+}
+
+/* 회원가입 가능한지  */
+#is-join-possible {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+/* 회원가입 하기  */
+.join-finish {
+  width: 100%;
+  height: 44px;
+
+  padding: 0;
+  margin-top: 3%;
+
+  background-color: #056c43;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.join-finish:hover {
+  background-color: #1ea06c;
+}
