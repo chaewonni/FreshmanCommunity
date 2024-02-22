@@ -3,7 +3,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
@@ -102,6 +101,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleMajorNotFoundException(MajorNotFoundException e) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(ArticleMissingContentException.class)
+    public ResponseEntity<String> handleArticleMissingContentException(ArticleMissingContentException e) {
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
                 .body(e.getMessage());
     }
 }

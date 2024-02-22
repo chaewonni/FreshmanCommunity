@@ -39,6 +39,10 @@ public class ArticleService {
         HttpSession session = request.getSession();
         Member member = (Member) session.getAttribute("member");
         if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
+        // dto에 제목이나 내용이 비어있을 시
+        if (dto.getContent().isBlank()|| dto.getTitle().isBlank()) {
+            throw new ArticleMissingContentException();
+        }
         // 2. 게시글 엔티티 생성
         Article article = Article.create(dto, major, member);
         // 3. 게시글 엔티티를 db에 저장
@@ -81,6 +85,10 @@ public class ArticleService {
         Member member = (Member) session.getAttribute("member");
         if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
         if(!(target.getMember().getId().equals(member.getId()))) throw new ArticleUpdateAccessDeniedException();
+        // dto에 제목이나 내용이 비어있을 시
+        if (dto.getContent().isBlank()|| dto.getTitle().isBlank()) {
+            throw new ArticleMissingContentException();
+        }
         // 2. 게시글 수정
         target.patch(dto);
         // 3. DB로 갱신
