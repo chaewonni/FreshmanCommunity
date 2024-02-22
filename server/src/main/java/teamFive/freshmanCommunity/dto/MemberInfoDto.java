@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import teamFive.freshmanCommunity.entity.Major;
+import teamFive.freshmanCommunity.entity.Member;
 
 @Data
 //@NoArgsConstructor
@@ -16,4 +17,13 @@ public class MemberInfoDto {
     private String memberName;
     private String studentId;
     private Major major;
+
+    public static MemberInfoDto createMemberDto(Member member){
+        return new MemberInfoDto(
+                member.getId(),
+                member.getMemberName(),
+                member.getStudentId(),
+                member.getMajor()
+        );
+    }
 }

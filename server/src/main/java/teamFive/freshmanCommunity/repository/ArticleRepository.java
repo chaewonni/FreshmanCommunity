@@ -8,7 +8,7 @@ import teamFive.freshmanCommunity.entity.Article;
 import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-    @Query(value = "SELECT * FROM article where major_id = :major_id",
+    @Query(value = "SELECT * FROM article where major_id = :major_id ORDER BY create_date DESC",
         nativeQuery = true)
     List<Article> findAllByMajor(Long major_id);
 }
