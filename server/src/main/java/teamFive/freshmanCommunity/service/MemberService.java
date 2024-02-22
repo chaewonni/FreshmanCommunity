@@ -7,6 +7,7 @@ import teamFive.freshmanCommunity.entity.Major;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.DuplicateMemberException;
 import teamFive.freshmanCommunity.exception.IncorrectPasswordException;
+import teamFive.freshmanCommunity.exception.MajorNotFoundException;
 import teamFive.freshmanCommunity.exception.MemberNotFoundException;
 import teamFive.freshmanCommunity.repository.BookmarkRepository;
 import teamFive.freshmanCommunity.repository.MajorRepository;
@@ -36,7 +37,7 @@ public class MemberService {
         signupDto.encodingPassword(passwordEncoder);
         Major major = majorRepository.findByMajorName(signupDto.getMajorName());
         if (major == null) {
-            throw new IllegalStateException("전공이 존재하지 않습니다.");
+            throw new MajorNotFoundException("전공이 존재하지 않습니다.");
         }
         //멤버 엔티티 생성
         Member member = Member.createMember(signupDto, major);
@@ -49,7 +50,7 @@ public class MemberService {
         Long count = memberRepository.countByEmail(signupDto.getEmail());
         if (count > 0) {
             // 중복된 이메일이나 학번이 존재하는 경우 예외 발생
-            throw new DuplicateMemberException("이미 존재하는 회원입니다.");
+            throw new DuplicateMemberException("이미 존재하는 회원의 이메일입니다.");
         }
     }
 
