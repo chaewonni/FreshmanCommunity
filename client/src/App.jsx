@@ -7,13 +7,16 @@ import './App.css';
 // import { useState } from 'react';
 // import NewCardModal from './components/modal/Modal';
 
+
 import { Main, Mypage } from './components';
+import Login from './components/login/Login';
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
+          <Route path="/user/login" element={<Login />} />
           <Route path="/" element={<Main />} />
           <Route path="/mypage" element={<Mypage />} /> 
         </Routes>
