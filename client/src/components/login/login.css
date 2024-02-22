@@ -1,0 +1,133 @@
+.container {
+  /* background-color: lightblue; */
+  width: 20%;
+  position: absolute;
+  top: 20%;
+  left: 15%;
+}
+
+/* 로그인, ewha where change begins  */
+#top-text {
+  /* background-color: lightcyan; */
+  margin-bottom: 15%;
+}
+#top-text h1 {
+  font-size: 40px;
+  /* background-color: lightpink; */
+  margin-bottom: 0;
+}
+#top-text h3 {
+  font-size: 22px;
+  color: #056c43;
+  font-weight: normal;
+  margin-top: 1%;
+}
+#top-text h3 span {
+  color: #475467;
+}
+
+/* 입력 창  */
+.input {
+  /* background-color: lightgreen; */
+  font-family: 'Noto Sans KR', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  width: 100%;
+}
+
+/* 이메일 */
+
+.email-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+.email-input .errorMessageWrap span {
+  color: red;
+  font-size: 0.7rem;
+}
+.email-input span {
+  font-size: 1rem;
+  color: #333d42;
+  margin-bottom: 0.3em;
+  margin-left: 0.3em;
+}
+.email-input input {
+  height: 4.5vh;
+  border: 1px solid #333d42;
+  padding: 1rem 0 1rem 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.email-input input:focus {
+  outline-color: #056c43;
+  outline-width: 1.5px;
+}
+
+.password-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+.password-input .errorMessageWrap span {
+  color: red;
+  font-size: 0.7rem;
+}
+.password-input span {
+  font-size: 1rem;
+  color: #333d42;
+  margin-bottom: 0.3em;
+  margin-left: 0.3em;
+}
+.password-input input {
+  height: 4.5vh;
+  border: 1px solid #333d42;
+  padding: 1rem 0 1rem 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.password-input input:focus {
+  outline-color: #056c43;
+  outline-width: 1.5px;
+}
+
+.button {
+  /* background-color: lightsteelblue; */
+}
+/* 로그인 버튼  */
+#login-button {
+  width: 100%;
+  height: 44px;
+
+  padding: 0;
+  margin-top: 3%;
+
+  background-color: #056c43;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* 회원가입 */
+.button #join {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 5%;
+
+  font-size: 12px;
+}
+
+#join span {
+  margin-right: 2px;
+}
+#join #register-button {
+  background: none;
+  border: none;
+
+  color: #00462a;
+  font-weight: bold;
+}

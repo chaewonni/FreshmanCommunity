@@ -8,12 +8,14 @@ import './App.css';
 // import NewCardModal from './components/modal/Modal';
 
 import { Main } from './components';
+import Login from './components/login/Login';
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
+          <Route path="/user/login" element={<Login />} />
           <Route path="/" element={<Main />} />
         </Routes>
       </Router>
