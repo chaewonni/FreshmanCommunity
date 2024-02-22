@@ -80,7 +80,7 @@ public class ArticleService {
         HttpSession session = request.getSession();
         Member member = (Member) session.getAttribute("member");
         if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
-        if(!(target.getMember().equals(member))) throw new ArticleUpdateAccessDeniedException();
+        if(!(target.getMember().getId().equals(member.getId()))) throw new ArticleUpdateAccessDeniedException();
         // 2. 게시글 수정
         target.patch(dto);
         // 3. DB로 갱신
