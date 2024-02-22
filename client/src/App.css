@@ -53,6 +53,19 @@ header #header-mid .ewha-logo img {
   height: 250px;
 }
 
+#header-mid-left #bookmark {
+  font-size: 2.5rem;
+  margin-bottom: -70px;
+}
+
+#header-mid-left #bookmark h3{
+  color: black;
+}
+
+#header-mid-left #bookmark h3 span{
+  color: #00462a;
+}
+
 /* 과 선택 옵션 */
 
 .choose-major label {

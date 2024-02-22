@@ -7,7 +7,7 @@ import './App.css';
 // import { useState } from 'react';
 // import NewCardModal from './components/modal/Modal';
 
-import { Main } from './components';
+import { Main, Mypage } from './components';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/mypage" element={<Mypage />} /> 
         </Routes>
       </Router>
     </div>

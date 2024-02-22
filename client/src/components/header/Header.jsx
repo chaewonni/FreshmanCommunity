@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 
 import EwhaLogo from './Logo';
 
-export const Header = () => (
+export const Header = ({ showMajor = true, myBookmark = false }) => (
   <header>
     <div id="header-top">
-      <Link to="#">Liked</Link>
       <Link to="#">Home</Link>
       <Link to="#">Logout</Link>
+      { myBookmark && (<Link to="#">Delete</Link>)}
+      { showMajor && (<Link to="#">Liked</Link>)}
     </div>
     <div id="header-mid">
       {/* ewha where change begins 무엇이든 물어벗살  */}
@@ -26,6 +27,10 @@ export const Header = () => (
             <span>무</span>엇이든 <span>물</span>어<span>벗</span>살
           </h1>
         </div>
+        { myBookmark && (
+          <div id="bookmark">
+            <h3> 나의 <span>북마크</span></h3>
+          </div>)}
       </div>
 
       {/* 이화 로고 */}
@@ -34,7 +39,7 @@ export const Header = () => (
       </div>
     </div>
 
-    <div className="choose-major">
+    {showMajor && (<div className="choose-major">
       <label htmlFor="dino-select">과를 골라주세요 : </label>
       <select className="choose-major-option">
         <optgroup label="인문과학대학">
@@ -146,5 +151,6 @@ export const Header = () => (
         </optgroup>
       </select>
     </div>
+    )}
   </header>
 );
