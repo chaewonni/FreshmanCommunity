@@ -39,6 +39,10 @@ public class ArticleService {
         HttpSession session = request.getSession();
         Member member = (Member) session.getAttribute("member");
         if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
+        // dto에 제목이나 내용이 비어있을 시
+        if (dto.getContent().isBlank()|| dto.getTitle().isBlank()) {
+            throw new ArticleMissingContentException();
+        }
         // 2. 게시글 엔티티 생성
         Article article = Article.create(dto, major, member);
         // 3. 게시글 엔티티를 db에 저장
@@ -48,8 +52,8 @@ public class ArticleService {
     }
 
     public List<ArticleReadDto> articles(Long majorId) {
-        // 0.5. majorId 존재 안할 시 예외 처리 : 몇 번이 무슨 학과인지, 몇 번까지 있는지는 한 번 찾아봐야 할 것 같습니다.
-        if (majorId <0 || majorId > 90) {
+        // 0.5. majorId 존재 안할 시 예외 처리
+        if (!majorRepository.existsById(majorId)) {
             throw new BoardNotFoundException();
         }
         // 1. 게시글 조회
@@ -81,6 +85,10 @@ public class ArticleService {
         Member member = (Member) session.getAttribute("member");
         if (member == null) throw new MemberNotFoundException("멤버 조회 실패");
         if(!(target.getMember().getId().equals(member.getId()))) throw new ArticleUpdateAccessDeniedException();
+        // dto에 제목이나 내용이 비어있을 시
+        if (dto.getContent().isBlank()|| dto.getTitle().isBlank()) {
+            throw new ArticleMissingContentException();
+        }
         // 2. 게시글 수정
         target.patch(dto);
         // 3. DB로 갱신
