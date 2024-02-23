@@ -1,7 +1,7 @@
 // mypage.js
 import React, { useEffect, useState } from 'react';
 import { Header } from '../header';
-import { ViewCard } from '../header/ViewCard';
+import { ViewCard } from '../ViewCard/ViewCard';
 import { fetchMyBookmark } from '../../apis/mypage';
 
 export const Mypage = () => {

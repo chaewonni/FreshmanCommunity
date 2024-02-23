@@ -1,6 +1,6 @@
 import { Header } from '../header';
-import { NewCard } from '../header/NewCard';
-import { ViewCard } from '../header/ViewCard';
+import { NewCard } from '../newCard/NewCard';
+import { ViewCard } from '../ViewCard/ViewCard';
 
 export const Main = () => (
   <>
