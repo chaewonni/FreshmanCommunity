@@ -52,8 +52,8 @@ public class ArticleService {
     }
 
     public List<ArticleReadDto> articles(Long majorId) {
-        // 0.5. majorId 존재 안할 시 예외 처리 : 몇 번이 무슨 학과인지, 몇 번까지 있는지는 한 번 찾아봐야 할 것 같습니다.
-        if (majorId <0 || majorId > 90) {
+        // 0.5. majorId 존재 안할 시 예외 처리
+        if (!majorRepository.existsById(majorId)) {
             throw new BoardNotFoundException();
         }
         // 1. 게시글 조회
