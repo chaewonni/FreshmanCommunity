@@ -110,4 +110,11 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NO_CONTENT)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(CommentMissingContentException.class)
+    public ResponseEntity<String> handleCommentMissingContentException(CommentMissingContentException e) {
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .body(e.getMessage());
+    }
 }
