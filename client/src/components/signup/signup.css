@@ -261,3 +261,22 @@
 .join-finish:hover {
   background-color: #1ea06c;
 }
+
+#ewha-pic2 {
+  position: fixed;
+  height: 100vh;
+  width: 50vw;
+  top: 0%;
+  right: 50%;
+  border-radius: 70px;
+  bottom: 0%;
+  background-color: #c9c9c939;
+}
+#ewha-pic2 img {
+  position: fixed;
+  height: 100vh;
+  right: 55%;
+  border-radius: 70px;
+  top: 0%;
+  bottom: 0%;
+}
