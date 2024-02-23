@@ -1,6 +1,6 @@
+// mypage.js
 import React, { useEffect, useState } from 'react';
 import { Header } from '../header';
-import { List } from '../list';
 import { ViewCard } from '../header/ViewCard';
 import { fetchMyBookmark } from '../../apis/mypage';
 
@@ -10,9 +10,17 @@ export const Mypage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchMyBookmark().then(data => {
-      setMyBookmark(data);
-    });
+    const fetchData = async () => {
+      try {
+        const data = await fetchMyBookmark();
+        setMyBookmark(data.bookmarks);
+      } catch (error) {
+        console.error('Failed to fetch bookmarked articles:', error);
+        setMyBookmark([]);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleSelectArticle = article => {
@@ -27,7 +35,7 @@ export const Mypage = () => {
   return (
     <>
       <Header showMajor={false} myBookmark={true} />
-      <List articles={myBookmark} onSelectArticle={handleSelectArticle} />
+      <ViewCard articles={myBookmark} onSelectArticle={handleSelectArticle} />
       {isModalOpen && selectedArticle && <ViewCard article={selectedArticle} onClose={handleCloseModal} />}
     </>
   );
