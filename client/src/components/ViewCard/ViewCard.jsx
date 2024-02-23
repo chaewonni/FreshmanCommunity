@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { RiAddBoxLine } from 'react-icons/ri';
 import NewCardModal from '../modal/Modal';
-import EwhaLogo from './Logo';
+import EwhaLogo from '../header/Logo';
 import { Card } from '../list/Card';
 import * as S from '../list/list.style';
 import { MOCK_CARD_LIST } from '../list/card.const';
