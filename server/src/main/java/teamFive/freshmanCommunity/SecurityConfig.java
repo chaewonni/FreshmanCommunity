@@ -11,31 +11,48 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // 비밀번호 인코더 빈을 정의합니다.
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // HTTP 보안 설정을 정의합니다.
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.httpBasic(HttpBasicConfigurer::disable)
+//                .csrf(CsrfConfigurer::disable)
+//                .cors(Customizer.withDefaults())
+//                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+//                .authorizeHttpRequests(authorize -> authorize
+//                        .requestMatchers("/**").permitAll()
+//                        .anyRequest().authenticated()
+//                );
+//
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.httpBasic(HttpBasicConfigurer::disable)
-                .csrf(CsrfConfigurer::disable)
-                .cors(Customizer.withDefaults())
-                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
-                .authorizeHttpRequests(authorize -> authorize
+        http
+                // HTTP Basic 인증 비활성화
+                .httpBasic(httpBasicConfigurer -> httpBasicConfigurer.disable())  // HTTP Basic 인증 비활성화
+                .csrf(CsrfConfigurer::disable)  // CSRF 보호 기능 비활성화
+                .cors(corsConfigurer -> corsConfigurer.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
+                .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+                .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
                         .requestMatchers("/**").permitAll()
-                        .anyRequest().authenticated() // 그 외의 요청은 인증된 사용자만 접근할 수 있습니다.
+                        .anyRequest().authenticated()
                 );
 
         return http.build();
     }
+
 
 }
 
