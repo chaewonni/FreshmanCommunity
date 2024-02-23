@@ -1,6 +1,6 @@
 // 카드 클릭 시 보여주기
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { RiAddBoxLine } from 'react-icons/ri';
 import NewCardModal from '../modal/Modal';
@@ -8,8 +8,11 @@ import EwhaLogo from './Logo';
 import { Card } from '../list/Card';
 import * as S from '../list/list.style';
 import { MOCK_CARD_LIST } from '../list/card.const';
+import { fetchMyViewCard } from '../../apis/viewcard';
 
 export const ViewCard = () => {
+  const [myViewCard, setMyViewCard] = useState([]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -20,6 +23,25 @@ export const ViewCard = () => {
     setSelectedCard({ id, title, member, content, createDate });
     openModal();
   };
+
+  // 데이터
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchMyViewCard();
+        setMyViewCard(data.bookmarks);
+      } catch (error) {
+        console.error('Failed to fetch this article:', error);
+        setMyViewCard([]);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 게시글 클릭 시 커서 변경
+
+  document.body.style.cursor = 'pointer';
 
   return (
     <>
