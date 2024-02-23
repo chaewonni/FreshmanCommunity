@@ -53,7 +53,7 @@ export default function Login() {
   };
 
   const onClickRegisterButton = () => {
-    navigate('/users/join');
+    navigate('/user/signup');
   };
 
   useEffect(() => {

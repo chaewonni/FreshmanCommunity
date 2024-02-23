@@ -17,6 +17,7 @@
     // "error" or 2 - turn the rule on as an error (exit code is 1 when triggered)
     "eol-last": "off",
     // "no-var": "off",
+    "eol-last": "off",
     "operator-linebreak": "off",
     "object-curly-newline": "off",
     "linebreak-style": 0,
