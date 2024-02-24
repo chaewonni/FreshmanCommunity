@@ -9,6 +9,7 @@ import teamFive.freshmanCommunity.entity.Article;
 import teamFive.freshmanCommunity.entity.Comment;
 import teamFive.freshmanCommunity.entity.Member;
 import teamFive.freshmanCommunity.exception.BoardNotFoundByIdException;
+import teamFive.freshmanCommunity.exception.CommentMissingContentException;
 import teamFive.freshmanCommunity.exception.CommentNotFoundException;
 import teamFive.freshmanCommunity.exception.NotSameMemberException;
 import teamFive.freshmanCommunity.repository.ArticleRepository;
@@ -40,6 +41,10 @@ public class CommentService {
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(()-> new BoardNotFoundByIdException());
 
+        //추가하는 댓글의 content가 없으면 오류
+        if(dto.getContent().isBlank())
+            throw new CommentMissingContentException();
+
         Comment created = Comment.createNewComment(dto, article, member);
         Comment save = commentRepository.save(created);
         return CommentResponseDto.createCommentDto(save);
@@ -52,6 +57,9 @@ public class CommentService {
         //지우려는 댓글이 로그인한 유저가 아닌 경우 수정 불가
         if(!target.getMember().getId().equals(member.getId()))
             throw new NotSameMemberException();
+        //수정 댓글의 content가 없으면 오류
+        if(dto.getContent().isBlank())
+            throw new CommentMissingContentException();
 
         target.patch(dto);
         Comment save = commentRepository.save(target);
