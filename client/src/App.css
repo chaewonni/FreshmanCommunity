@@ -48,7 +48,7 @@ body {
 }
 
 header #header-mid .ewha-logo img {
-  margin: 4vh 0 0 25vh;
+  margin: 4vh 0 0 18vw;
   width: 250px;
   height: 250px;
 }
@@ -58,11 +58,11 @@ header #header-mid .ewha-logo img {
   margin-bottom: -70px;
 }
 
-#header-mid-left #bookmark h3{
+#header-mid-left #bookmark h3 {
   color: black;
 }
 
-#header-mid-left #bookmark h3 span{
+#header-mid-left #bookmark h3 span {
   color: #00462a;
 }
 
@@ -204,40 +204,50 @@ body #button-container p {
   border: none;
 }
 
+fieldset header {
+  /* background-color: #696969; */
+}
+
 /* 새로운 카드 제목  */
 .MuiBox-root.css-0 fieldset #new-card-title {
   padding: 8px 10px;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: bold;
 
   border: none;
 }
 .MuiBox-root.css-0 fieldset #new-card-title::placeholder {
   color: #67727e77;
+  position: absolute;
+  top: 2px;
+  left: 14px;
 }
 
 .MuiBox-root.css-0 fieldset #new-card-title:focus {
   /*클릭 시 테두리 */
-  outline: 2px #67727e77 solid;
+  outline: none;
   border-radius: 5px;
 }
 
 /* 새로운 카드 본문  */
 .MuiBox-root.css-0 fieldset #new-card-text {
   height: 510px;
-  margin-top: 10px;
-  padding: 0 10px;
+  margin-top: 8px;
+  padding: 10px 20px;
 
   border: none;
   font-size: 20px;
 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
+.MuiBox-root.css-0 textarea {
+  /* background-color: lightgreen; */
+  margin-left: 20px;
+}
 .MuiBox-root.css-0 fieldset #new-card-text::placeholder {
   position: fixed;
-  top: 10px;
-  left: 12px;
+  top: 7px;
+  left: 22px;
   color: #67727e77;
 }
 
