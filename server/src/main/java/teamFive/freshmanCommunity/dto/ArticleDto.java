@@ -35,17 +35,9 @@ public class ArticleDto {
     }
 
     public static ArticleReadDto createArticleReadDto(Article n) {
-        MemberInfoDto memberInfo = null;
-
-        if(n.getMember() != null) {
-            MemberInfoDto dto = MemberInfoDto.createMemberDto(n.getMember());
-            memberInfo = new MemberInfoDto(
-                    dto.getId(),
-                    dto.getMemberName(),
-                    dto.getStudentId(),
-                    dto.getMajor()
-            );
-        }
+        // 게시글에 연결된 회원 정보가 있으면 MemberInfoDto 객체를 생성, 없으면 memberInfo를 null로 설정
+        MemberInfoDto memberInfo = n.getMember() != null ?
+                MemberInfoDto.createMemberDto(n.getMember()) : null;
 
         return new ArticleReadDto(
                 n.getId(),

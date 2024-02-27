@@ -22,18 +22,10 @@ public class CommentResponseDto {   //댓글 요청시 돌려줄 값
     private Long articleId;    //article FK
 
     public static CommentResponseDto createCommentDto(Comment comment) {
-        MemberInfoDto memberInfo = null;
+        // 게시글에 연결된 회원 정보가 있으면 MemberInfoDto 객체를 생성, 없으면 memberInfo를 null로 설정
+        MemberInfoDto memberInfo = comment.getMember() != null ?
+                MemberInfoDto.createMemberDto(comment.getMember()) : null;
 
-        if(comment.getMember() != null) {
-            MemberInfoDto dto = MemberInfoDto.createMemberDto(comment.getMember());
-            memberInfo = new MemberInfoDto(
-                    dto.getId(),
-                    dto.getMemberName(),
-                    dto.getStudentId(),
-                    dto.getMajor()
-            );
-
-        }
         return new CommentResponseDto(
                 comment.getId(),
                 comment.getContent(),
